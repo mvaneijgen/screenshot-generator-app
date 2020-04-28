@@ -17,16 +17,12 @@
 
 <script>
 import { mapState } from "vuex";
-import DeviceTypes from "./DeviceTypes";
+// import DeviceTypes from "./DeviceTypes";
+import DeviceTypes from "@/components/Devices/DeviceTypes";
 
 export default {
   props: ["type"],
   name: "Devices",
-  data() {
-    return {
-      title: "Devices",
-    };
-  }, // End data
   components: {
     DeviceTypes,
   },
@@ -44,3 +40,15 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+@import "@/assets/scss/_variables.scss";
+#component-Devices {
+  h2 {
+    text-transform: lowercase;
+    color: $brand-light;
+    padding-left: $base-margin * 2;
+    margin: 0;
+    // font-weight: normal;
+  }
+}
+</style>

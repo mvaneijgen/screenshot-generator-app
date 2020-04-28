@@ -1,31 +1,35 @@
 <template>
   <li class="item" @click="addSelected" :data-selected="selected">
-    <h3>{{item.deviceName}}</h3>
-    <ul class=" meta">
-      <li>w x h: {{item.width}} x {{item.height}}</li>
-    </ul>
+    <div class="inner">
+      <h3>{{item.deviceName}}</h3>
+      <ul class=" meta">
+        <li><span>w x h:</span> {{item.width}} x {{item.height}}</li>
+      </ul>
+    </div>
+    <IconBase width="30" height="30" icon-name="tablet">
+      <IconMobile3 />
+    </IconBase>
   </li>
-
 </template>
 
 <script>
-import DeviceTypes from "./DeviceTypes";
+import IconBase from "@/components/Icons/IconBase";
+import IconMobile3 from "@/components/Icons/IconMobile3";
 export default {
   props: ["item"],
   name: "Devices",
+  components: {
+    IconBase,
+    IconMobile3,
+  },
   data() {
     return {
       selected: false,
     };
-  }, // End data
-  components: {
-    DeviceTypes,
   },
-  // More info at https://css-tricks.com/methods-computed-and-watchers-in-vue-js/
   computed: {
     getTypeDevices(type) {
       return this.$store.getters.getTypeDevices;
-      // return this.$store.getters["items/getItems"](tis.$route.params.type);
     },
   },
   methods: {
@@ -51,16 +55,27 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "@/assets/scss/_variables.scss";
 .item {
-  // width: 250px;
-  background-color: #fff;
+  color: $brand-dark;
+  background-color: #adbad9;
   box-shadow: 0 0 40px 0 rgba(#000, 0.1);
-  padding: 30px;
-  margin: 15px;
+  padding: $base-margin;
   overflow: hidden;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: transform;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+
   &[data-selected="true"] {
-    background-color: #0ba;
+    background-color: $brand-one;
+    color: $brand-light;
+  }
+  &:hover {
+    transform: scale(1.05);
   }
 }
 
@@ -68,5 +83,18 @@ ul {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+h3 {
+  margin-bottom: 0;
+  font-size: 19px;
+}
+.meta {
+  font-size: 16px;
+  li {
+    span {
+      text-transform: uppercase;
+      font-size: 0.8em;
+    }
+  }
 }
 </style>
