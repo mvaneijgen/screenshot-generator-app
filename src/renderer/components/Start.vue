@@ -30,10 +30,10 @@ export default {
   box-sizing: border-box;
 }
 ::-moz-selection {
-  background: $brand-two;
+  background: $brand-three;
 }
 ::selection {
-  background: $brand-two;
+  background: $brand-three;
 }
 body {
   background-color: $brand-dark-lighten;
@@ -179,7 +179,7 @@ main {
     padding: 40px;
     width: $offset;
     background-color: $brand-dark;
-    height: 100vh;
+    min-height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
@@ -187,6 +187,23 @@ main {
   }
   #component-Devices {
     margin-left: $offset;
+  }
+}
+[type="button"],
+[type="submit"],
+button,
+.btn {
+  padding: $base-margin;
+  border-color: $brand-one;
+  background-color: $brand-one;
+  color: $brand-light;
+  font-weight: 600;
+  font-size: 24px;
+  transition: transform;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+  &:hover {
+    transform: scale(1.05);
   }
 }
 </style>

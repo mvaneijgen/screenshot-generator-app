@@ -3,24 +3,39 @@
     <div class="inner">
       <h3>{{item.deviceName}}</h3>
       <ul class=" meta">
-        <li><span>w x h:</span> {{item.width}} x {{item.height}}</li>
+        <li>{{item.width}} x {{item.height}}</li>
+        <li><span>Scale factor:</span> {{item.deviceScaleFactor}}</li>
+        <li><span>Touch:</span> <template v-if="item.touch">YES</template><template v-else>NO</template></li>
       </ul>
     </div>
     <IconBase width="30" height="30" icon-name="tablet">
-      <IconMobile3 />
+      <IconPhone v-if="item.type === 'phone'" />
+      <IconPhoneAlt v-if="item.type === 'phoneAlt'" />
+      <IconTablet v-if="item.type === 'tablet'" />
+      <IconLaptop v-if="item.type === 'laptop'" />
+      <IconDesktop v-if="item.type === 'desktop'" />
     </IconBase>
   </li>
 </template>
 
 <script>
 import IconBase from "@/components/Icons/IconBase";
-import IconMobile3 from "@/components/Icons/IconMobile3";
+import IconPhone from "@/components/Icons/IconPhone";
+import IconPhoneAlt from "@/components/Icons/IconPhoneAlt";
+import IconTablet from "@/components/Icons/IconTablet";
+import IconLaptop from "@/components/Icons/IconLaptop";
+import IconDesktop from "@/components/Icons/IconDesktop";
+
 export default {
   props: ["item"],
   name: "Devices",
   components: {
     IconBase,
-    IconMobile3,
+    IconPhone,
+    IconPhoneAlt,
+    IconTablet,
+    IconLaptop,
+    IconDesktop,
   },
   data() {
     return {
@@ -40,7 +55,6 @@ export default {
       } else {
         this.$store.dispatch("Devices/REMOVE_SELECTED_DEVICES", this.item);
       }
-      console.warn(this.$store.getters["Devices/getSelectedDevices"]);
     },
   },
   mounted() {
@@ -57,11 +71,15 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/scss/_variables.scss";
 .item {
-  color: $brand-dark;
-  background-color: #adbad9;
-  box-shadow: 0 0 40px 0 rgba(#000, 0.1);
+  color: $brand-three;
+  background-color: $brand-dark;
+  box-shadow: 0 0 40px 0 rgba(#000, 0.2);
   padding: $base-margin;
+  @include media-breakpoint-up(lg) {
+    padding: $base-margin * 2;
+  }
   overflow: hidden;
+  min-height: 110px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
@@ -69,10 +87,20 @@ export default {
   transition: transform;
   transition-duration: 300ms;
   transition-timing-function: ease;
-
+  svg {
+    * {
+      fill: $brand-three;
+    }
+  }
   &[data-selected="true"] {
     background-color: $brand-one;
     color: $brand-light;
+    transform: scale(1) !important;
+    svg {
+      * {
+        fill: $brand-light;
+      }
+    }
   }
   &:hover {
     transform: scale(1.05);

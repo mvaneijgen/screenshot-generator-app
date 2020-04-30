@@ -4,25 +4,36 @@
       <span>Screenshot</span>
       <span>Generator</span>
     </div>
-    <form action="" @submit.prevent="">
-      <div class="input">
-        <label for="">Sitemap URL website</label>
-        <input id="url" type="url">
-        <div class="description">http://domain.com/link/to/sitemap.xml</div>
-      </div>
-      <div id="or">OR</div>
-      <div class="input">
-        <label for="file">Upload .xml</label>
-        <input id="file" type="file">
-      </div>
-    </form>
-    <input type="submit" value="Generate">
+    <Sitemap />
+    <div id="resutls">
+      <p>Going to view n pages of url {{url}}</p>
+      <p> This wil result in {{getSelectedDevices.length}} * n = nn screenshots</p>
+    </div>
+    <Generate />
 
   </aside>
 </template>
 
 <script>
-export default {};
+import Sitemap from "@/components/Start/Sitemap";
+import Generate from "@/components/Start/Generate";
+
+export default {
+  data() {
+    return {
+      url: "",
+    };
+  },
+  components: {
+    Sitemap,
+    Generate,
+  },
+  computed: {
+    getSelectedDevices() {
+      return this.$store.getters["Devices/getSelectedDevices"];
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/_variables.scss";
@@ -34,76 +45,31 @@ aside {
 }
 #logo {
   span {
-    font-size: 40px;
+    font-size: 60px;
+    color: $brand-three;
     line-height: 1em;
     font-weight: 900;
 
-    display: block;
     &:last-of-type {
+      margin-top: -20px;
+      color: $brand-three;
       font-size: 20px;
-      font-weight: 400;
+      // font-weight: 400;
       text-transform: uppercase;
+      background-color: $brand-dark-lighten;
+      z-index: 900;
+      position: relative;
+      display: inline-block;
+      padding: 5px 10px;
+      text-align: right;
     }
   }
 }
-form {
-  margin-top: 40px;
+
+#resutls {
   width: 100%;
-}
-select,
-input {
-  width: 100%;
+  background-color: $brand-three;
   padding: $base-margin;
-}
-[type="button"],
-[type="submit"],
-button,
-.btn {
-  padding: $base-margin;
-  border-color: $brand-one;
-  background-color: $brand-one;
-  color: $brand-light;
-  font-weight: 600;
-  font-size: 24px;
-  transition: transform;
-  transition-duration: 300ms;
-  transition-timing-function: ease;
-  &:hover {
-    transform: scale(1.05);
-  }
-}
-.input {
-  input,
-  label {
-    display: block;
-  }
-  .description {
-    font-size: 16px;
-    width: 100%;
-  }
-}
-[type="file"]::-webkit-file-upload-button {
-  visibility: hidden;
-}
-[type="file"]::before {
-  content: "Select some files";
-  display: inline-block;
-  background: linear-gradient(top, #f9f9f9, #e3e3e3);
-  border: 1px solid #999;
-  border-radius: 3px;
-  padding: 5px 8px;
-  outline: none;
-  white-space: nowrap;
-  -webkit-user-select: none;
-  cursor: pointer;
-  text-shadow: 1px 1px #fff;
-  font-weight: 700;
-  font-size: 10pt;
-}
-[type="file"]:hover::before {
-  border-color: black;
-}
-[type="file"]:active::before {
-  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+  font-size: 16px;
 }
 </style>

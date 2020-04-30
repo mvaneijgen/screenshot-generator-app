@@ -7,10 +7,10 @@
     <h2>Tablets</h2>
     <DeviceTypes :type="getTypeDevices('tablets')" />
 
-    <h2>notebooks</h2>
-    <DeviceTypes :type="getTypeDevices('notebooks')" />
+    <h2>Laptops</h2>
+    <DeviceTypes :type="getTypeDevices('laptops')" />
 
-    <h2>desktops</h2>
+    <h2>Desktops</h2>
     <DeviceTypes :type="getTypeDevices('desktops')" />
   </div>
 </template>
@@ -30,7 +30,6 @@ export default {
   computed: {
     getTypeDevices(type) {
       return this.$store.getters["Devices/getTypeDevices"];
-      // return this.$store.getters["items/getItems"](tis.$route.params.type);
     },
   },
   methods: {
@@ -44,11 +43,13 @@ export default {
 @import "@/assets/scss/_variables.scss";
 #component-Devices {
   h2 {
-    text-transform: lowercase;
-    color: $brand-light;
-    padding-left: $base-margin * 2;
+    // text-transform: lowercase;
+    color: $brand-three;
+    padding-left: $base-margin;
     margin: 0;
     // font-weight: normal;
+    font-size: 110px;
+    margin-bottom: -80px;
   }
 }
 </style>

@@ -29,6 +29,9 @@ ul {
 #device-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  @include media-breakpoint-up(lg) {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
   grid-column-gap: $base-margin * 2;
   grid-row-gap: $base-margin * 2;
   padding: $base-margin * 2;
