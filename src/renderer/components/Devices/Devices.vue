@@ -1,6 +1,5 @@
 <template>
   <div id="component-Devices">
-    <button @click="resetSelectedDevices">Reset selected Devices</button>
     <h2>Phones</h2>
     <DeviceTypes :type="getTypeDevices('phones')" />
 
@@ -26,15 +25,9 @@ export default {
   components: {
     DeviceTypes,
   },
-  // More info at https://css-tricks.com/methods-computed-and-watchers-in-vue-js/
   computed: {
     getTypeDevices(type) {
       return this.$store.getters["Devices/getTypeDevices"];
-    },
-  },
-  methods: {
-    resetSelectedDevices() {
-      this.$store.dispatch("Devices/RESET_SELECTED_DEVICES");
     },
   },
 };
@@ -49,7 +42,8 @@ export default {
     margin: 0;
     // font-weight: normal;
     font-size: 110px;
-    margin-bottom: -80px;
+    margin-bottom: -0.7em;
+    pointer-events: none;
   }
 }
 </style>

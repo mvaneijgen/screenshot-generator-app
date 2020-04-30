@@ -1,18 +1,19 @@
 <template>
-  <button @click="generate">Generate</button>
+  <button @click="generate" :disabled="getSitemap.length < 1 || getSelectedDevices.length < 1">Generate</button>
 </template>
 
 <script>
 import path from "path";
 import fs from "fs";
-// import fs from "fs";
-const Sitemapper = require("sitemapper");
 // import puppeteer from "puppeteer";
 
 export default {
   computed: {
     getSelectedDevices() {
       return this.$store.getters["Devices/getSelectedDevices"];
+    },
+    getSitemap() {
+      return this.$store.getters["Devices/getSitemap"];
     },
   },
   methods: {
@@ -174,4 +175,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/_variables.scss";
+button:disabled {
+  background-color: $brand-dark-lighten;
+  color: rgba($brand-light, 0.3);
+  cursor: not-allowed;
+  &:hover {
+    transform: scale(1);
+  }
+}
 </style>

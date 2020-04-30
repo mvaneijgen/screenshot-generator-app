@@ -35,6 +35,6 @@ ul {
   grid-column-gap: $base-margin * 2;
   grid-row-gap: $base-margin * 2;
   padding: $base-margin * 2;
-  margin-bottom: $base-margin * 2;
+  // margin-bottom: $base-margin * 2;
 }
 </style>

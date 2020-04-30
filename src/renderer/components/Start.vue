@@ -202,6 +202,8 @@ button,
   transition: transform;
   transition-duration: 300ms;
   transition-timing-function: ease;
+  width: 100%;
+  border: 0;
   &:hover {
     transform: scale(1.05);
   }

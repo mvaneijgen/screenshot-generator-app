@@ -233,7 +233,10 @@ const state = {
       mobile: true,
       type: "desktop"
     }
-  ]
+  ],
+  url: "",
+  sitemap: [],
+  loading: false,
 }
 
 const actions = {
@@ -245,7 +248,16 @@ const actions = {
   },
   REMOVE_SELECTED_DEVICES({ commit }, payload) {
     commit('REMOVE_SELECTED_DEVICES', payload);
-  }
+  },
+  SET_URL({ commit }, payload) {
+    commit('SET_URL', payload);
+  },
+  SET_SITEMAP({ commit }, payload) {
+    commit('SET_SITEMAP', payload);
+  },
+  SET_LOADING({ commit }, payload) {
+    commit('SET_LOADING', payload);
+  },
 }
 
 const mutations = {
@@ -260,13 +272,22 @@ const mutations = {
     const index = state.selectedDevices.findIndex(
       x => x.deviceName == payload.deviceName,
     );
-
     state.selectedDevices.splice(index, 1);
   },
+  SET_URL(state, payload) {
+    state.url = payload;
+  },
+  SET_SITEMAP(state, payload) {
+    state.sitemap = payload;
+  },
+  SET_LOADING(state, payload) {
+    state.loading = payload;
+  },
 }
+
 const getters = {
   getAllDevices: state => {
-    return [].concat(state.phones, state.tablets, state.notebooks, state.desktops);
+    return [].concat(state.phones, state.tablets, state.laptops, state.desktops);
   },
   getTypeDevices: state => type => {
     return state[type];
@@ -274,7 +295,15 @@ const getters = {
   getSelectedDevices: state => {
     return state.selectedDevices;
   },
-
+  getSitemap: state => {
+    return state.sitemap;
+  },
+  getURL: state => {
+    return state.url;
+  },
+  getLoading: state => {
+    return state.loading;
+  },
 }
 
 export default {

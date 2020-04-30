@@ -5,12 +5,7 @@
       <span>Generator</span>
     </div>
     <Sitemap />
-    <div id="resutls">
-      <p>Going to view n pages of url {{url}}</p>
-      <p> This wil result in {{getSelectedDevices.length}} * n = nn screenshots</p>
-    </div>
     <Generate />
-
   </aside>
 </template>
 
@@ -19,29 +14,19 @@ import Sitemap from "@/components/Start/Sitemap";
 import Generate from "@/components/Start/Generate";
 
 export default {
-  data() {
-    return {
-      url: "",
-    };
-  },
   components: {
     Sitemap,
     Generate,
-  },
-  computed: {
-    getSelectedDevices() {
-      return this.$store.getters["Devices/getSelectedDevices"];
-    },
   },
 };
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/_variables.scss";
 aside {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: space-between;
+  // align-items: flex-start;
 }
 #logo {
   span {
@@ -51,17 +36,18 @@ aside {
     font-weight: 900;
 
     &:last-of-type {
-      margin-top: -20px;
-      color: $brand-three;
+      color: $brand-light;
       font-size: 20px;
       // font-weight: 400;
       text-transform: uppercase;
-      background-color: $brand-dark-lighten;
+      background-color: $brand-one;
       z-index: 900;
       position: relative;
       display: inline-block;
       padding: 5px 10px;
       text-align: right;
+      transform: translateY(-0.7em);
+      margin-left: 10px;
     }
   }
 }
