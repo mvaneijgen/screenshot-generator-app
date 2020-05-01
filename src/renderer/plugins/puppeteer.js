@@ -68,6 +68,9 @@ export async function generateScreenshots(sitemap, devices) {
         args: ["--no-sandbox", "--disable-setuid-sandbox"],
         executablePath: getChromiumExecPath()
       });
+      await browser.connect({
+        browserWSEndpoint: 'node_modules/puppeteer/.local-chromium/**/*'
+      });
 
       let page = await browser.newPage();
 
