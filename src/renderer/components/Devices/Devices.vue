@@ -6,11 +6,14 @@
     <h2>Tablets</h2>
     <DeviceTypes :type="getTypeDevices('tablets')" />
 
-    <h2>Laptops</h2>
-    <DeviceTypes :type="getTypeDevices('laptops')" />
+    <h2>Computers</h2>
+    <DeviceTypes :type="getTypeDevices('computers')" />
 
-    <h2>Desktops</h2>
-    <DeviceTypes :type="getTypeDevices('desktops')" />
+    <!-- <h2>Laptops</h2>
+    <DeviceTypes :type="getTypeDevices('laptops')" /> -->
+
+    <!-- <h2>Desktops</h2>
+    <DeviceTypes :type="getTypeDevices('desktops')" /> -->
   </div>
 </template>
 

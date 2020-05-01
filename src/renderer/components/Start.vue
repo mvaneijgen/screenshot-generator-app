@@ -177,16 +177,20 @@ $offset: 400px;
 main {
   aside {
     padding: 40px;
-    width: $offset;
     background-color: $brand-dark;
-    min-height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
     color: #fff;
   }
-  #component-Devices {
-    margin-left: $offset;
+  @include media-breakpoint-up(lg) {
+    aside {
+      width: $offset;
+      min-height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+    #component-Devices {
+      margin-left: $offset;
+    }
   }
 }
 [type="button"],

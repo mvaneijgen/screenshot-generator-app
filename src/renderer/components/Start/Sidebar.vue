@@ -2,7 +2,7 @@
   <aside>
     <div id="logo">
       <span>Screenshot</span>
-      <span>Generator</span>
+      <span>Generator <i>⚙️</i></span>
     </div>
     <Sitemap />
     <Generate />
@@ -50,12 +50,10 @@ aside {
       margin-left: 10px;
     }
   }
-}
-
-#resutls {
-  width: 100%;
-  background-color: $brand-three;
-  padding: $base-margin;
-  font-size: 16px;
+  i {
+    transform: translateY(1px);
+    display: inline-block;
+    font-style: normal;
+  }
 }
 </style>

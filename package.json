@@ -19,6 +19,8 @@
   "build": {
     "productName": "screenshot-app",
     "appId": "com.example.yourapp",
+    "asar": true,
+    "asarUnpack": "node_modules/puppeteer/.local-chromium/**/*",
     "directories": {
       "output": "build"
     },
@@ -52,7 +54,6 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "puppeteer": "^3.0.2",
     "sitemapper": "^3.0.5",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",

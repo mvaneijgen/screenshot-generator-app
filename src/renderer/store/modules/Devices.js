@@ -234,6 +234,71 @@ const state = {
       type: "desktop"
     }
   ],
+  //------------------------------------------------------//
+  // 🖥 Computers
+  //------------------------------------------------------//
+  computers: [
+    {
+      deviceName: "Wide screen",
+      width: 1280,
+      height: 950,
+      deviceScaleFactor: 1,
+      userAgent: "",
+      touch: false,
+      mobile: true,
+      type: "desktop"
+    },
+    {
+      deviceName: "27 iMac",
+      width: 1440,
+      height: 900,
+      deviceScaleFactor: 1,
+      userAgent: "",
+      touch: false,
+      mobile: true,
+      type: "desktop",
+    },
+    {
+      deviceName: "Moderate desktop",
+      width: 1920,
+      height: 1080,
+      deviceScaleFactor: 1,
+      userAgent: "",
+      touch: false,
+      mobile: true,
+      type: "desktop"
+    },
+    {
+      deviceName: "Laptop with touch",
+      width: 1280,
+      height: 950,
+      deviceScaleFactor: 1,
+      userAgent: "",
+      touch: false,
+      mobile: true,
+      type: "laptop"
+    },
+    {
+      deviceName: "Laptop with HiDPI screen",
+      width: 1440,
+      height: 900,
+      deviceScaleFactor: 2,
+      userAgent: "",
+      touch: false,
+      mobile: true,
+      type: "laptop"
+    },
+    {
+      deviceName: "Laptop with MDPI screen",
+      width: 1280,
+      height: 800,
+      deviceScaleFactor: 1,
+      userAgent: "",
+      touch: false,
+      mobile: true,
+      type: "laptop"
+    }
+  ],
   url: "",
   sitemap: [],
   loading: false,

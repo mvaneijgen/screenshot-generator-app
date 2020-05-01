@@ -3,7 +3,7 @@
     <transition name="custom" mode="out-in">
       <div id="resutls" v-if="getSelectedDevices.length < 1" key="noDevices">
         <p>First step</p>
-        <h3>Select the devices you want to generate screenshots off</h3>
+        <h3>Select at least one device from the list</h3>
       </div>
       <div id="resutls" v-else-if="getSitemap.length < 1 && !getLoading" key="noSitemap">
         <p>Next step</p>
