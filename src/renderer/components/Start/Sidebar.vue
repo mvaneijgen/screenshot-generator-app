@@ -2,7 +2,7 @@
   <aside>
     <div id="logo">
       <span>Screenshot</span>
-      <span>Generator <i>⚙️</i></span>
+      <span>Generator</span>
     </div>
     <fileStorage />
     <Sitemap />
@@ -29,6 +29,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/scss/_variables.scss";
 aside {
+  -webkit-app-region: drag;
   // display: flex;
   // flex-direction: column;
   // justify-content: space-between;

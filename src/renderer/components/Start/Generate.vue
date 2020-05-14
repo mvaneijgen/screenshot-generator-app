@@ -1,16 +1,20 @@
 <template>
   <!-- <button @click="generate" :disabled="getSitemap.length < 1 || getSelectedDevices.length < 1">Generate</button> -->
-  <button @click="generate">Generate</button>
+  <button @click="generateSpawn2">Generate</button>
 </template>
 
 <script>
 // import path from "path";
 // import { remote } from "electron";
 // const { spawn } = require("child_process");
+// var childProcess = require("child_process");
+// const { fork, spawn } = require("child_process");
+// // const { fork, spawn } = require("child_process");
+// const path = require("path");
+// const { ipcRenderer } = require("electron");
 
-const { fork, spawn } = require("child_process");
+const { spawn } = require("child_process");
 const path = require("path");
-const { ipcRenderer } = require("electron");
 
 export default {
   computed: {
@@ -22,16 +26,24 @@ export default {
     },
   },
   methods: {
-    generate() {
-      // console.warn("test");
-      // spawn(
-      //   process.execPath,
-      //   [path.join(__dirname, "plugins/puppeteer.js"), "args"],
-      //   {
-      //     stdio: "pipe",
-      //   },
-      // );
+    generateSpawn2() {
+      const ls = spawn(process.execPath, [
+        path.join(__dirname, "../../plugins/puppeteer.js"),
+      ]);
 
+      ls.stdout.on("data", data => {
+        console.log(`stdout: ${data}`);
+      });
+
+      ls.stderr.on("data", data => {
+        console.error(`stderr: ${data}`);
+      });
+
+      ls.on("close", code => {
+        console.log(`child process exited with code ${code}`);
+      });
+    },
+    generateFork() {
       const p = fork(
         path.join(__dirname, "../../plugins/puppeteer.js"),
         ["hello"],
@@ -52,6 +64,32 @@ export default {
       function writeData(data) {
         console.warn(data);
       }
+    },
+    generateSpawn() {
+      let sp = childProcess.spawn(
+        process.execPath,
+        ["../../plugins/puppeteer.js"],
+        {
+          stdio: "pipe",
+        },
+      );
+      sp.unref();
+      sp.on("error", err => {
+        console.log("failed to start process", err);
+      });
+      sp.on("exit", (code, signal) => {
+        console.log(`child process exited with code ${code}`);
+        // createProc();
+      });
+      //       spawn(process.execPath, ["./go.js"], { stdio: "ignore" });
+      // console.warn("test");
+      // spawn(
+      //   process.execPath,
+      //   [path.join(__dirname, "plugins/puppeteer.js"), "args"],
+      //   {
+      //     stdio: "pipe",
+      //   },
+      // );
     },
   },
 };
