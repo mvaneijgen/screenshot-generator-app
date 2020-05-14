@@ -4,7 +4,9 @@
       <span>Screenshot</span>
       <span>Generator <i>⚙️</i></span>
     </div>
+    <fileStorage />
     <Sitemap />
+    <SidebarResult />
     <Generate />
   </aside>
 </template>
@@ -12,11 +14,15 @@
 <script>
 import Sitemap from "@/components/Start/Sitemap";
 import Generate from "@/components/Start/Generate";
+import fileStorage from "@/components/Start/fileStorage";
+import SidebarResult from "@/components/Start/SidebarResult";
 
 export default {
   components: {
     Sitemap,
     Generate,
+    fileStorage,
+    SidebarResult,
   },
 };
 </script>

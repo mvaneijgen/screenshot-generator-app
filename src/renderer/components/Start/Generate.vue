@@ -1,12 +1,16 @@
 <template>
-  <button @click="generate" :disabled="getSitemap.length < 1 || getSelectedDevices.length < 1">Generate</button>
+  <!-- <button @click="generate" :disabled="getSitemap.length < 1 || getSelectedDevices.length < 1">Generate</button> -->
+  <button @click="generate">Generate</button>
 </template>
 
 <script>
-import path from "path";
-import fs from "fs";
-// import puppeteer from "puppeteer";
-// import { generateScreenshots } from "@/plugins/puppeteer";
+// import path from "path";
+// import { remote } from "electron";
+// const { spawn } = require("child_process");
+
+const { fork, spawn } = require("child_process");
+const path = require("path");
+const { ipcRenderer } = require("electron");
 
 export default {
   computed: {
@@ -16,15 +20,38 @@ export default {
     getSitemap() {
       return this.$store.getters["Devices/getSitemap"];
     },
-    // getChromiumExecPath() {
-    //   return puppeteer
-    //     .executablePath()
-    //     .replace("app.asar", "app.asar.unpacked");
-    // },
   },
   methods: {
     generate() {
-      console.warn("generate");
+      // console.warn("test");
+      // spawn(
+      //   process.execPath,
+      //   [path.join(__dirname, "plugins/puppeteer.js"), "args"],
+      //   {
+      //     stdio: "pipe",
+      //   },
+      // );
+
+      const p = fork(
+        path.join(__dirname, "../../plugins/puppeteer.js"),
+        ["hello"],
+        {
+          stdio: ["pipe", "pipe", "pipe", "ipc"],
+        },
+      );
+      p.stdout.on("data", d => {
+        writeData("[stdout-renderer-fork] " + d.toString());
+      });
+      p.stderr.on("data", d => {
+        writeData("[stderr-renderer-fork] " + d.toString());
+      });
+      p.send("hello");
+      p.on("message", m => {
+        writeData("[ipc-main-fork] " + m);
+      });
+      function writeData(data) {
+        console.warn(data);
+      }
     },
   },
 };

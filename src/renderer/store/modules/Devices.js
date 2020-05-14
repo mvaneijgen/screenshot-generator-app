@@ -302,6 +302,7 @@ const state = {
   url: "",
   sitemap: [],
   loading: false,
+  path: '',
 }
 
 const actions = {
@@ -322,6 +323,9 @@ const actions = {
   },
   SET_LOADING({ commit }, payload) {
     commit('SET_LOADING', payload);
+  },
+  SET_PATH({ commit }, payload) {
+    commit('SET_PATH', payload);
   },
 }
 
@@ -348,6 +352,9 @@ const mutations = {
   SET_LOADING(state, payload) {
     state.loading = payload;
   },
+  SET_PATH(state, payload) {
+    state.path = payload;
+  },
 }
 
 const getters = {
@@ -368,6 +375,9 @@ const getters = {
   },
   getLoading: state => {
     return state.loading;
+  },
+  getPath: state => {
+    return state.path;
   },
 }
 

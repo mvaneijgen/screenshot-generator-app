@@ -12,16 +12,15 @@
       <input id="file" type="file">
     </div> -->
     <!-- <input type="submit" value="check"> -->
-    <SidebarResult />
 
-    <pre>{{error}}</pre>
   </div>
 </template>
 
 <script>
 const Sitemapper = require("sitemapper");
 
-import SidebarResult from "@/components/Start/SidebarResult";
+// import path from "path";
+// import { remote } from "electron";
 
 export default {
   data() {
@@ -29,9 +28,6 @@ export default {
       url: "",
       error: "",
     };
-  },
-  components: {
-    SidebarResult,
   },
   methods: {
     getSitemap() {
@@ -53,6 +49,9 @@ export default {
         });
     },
   },
+  // mounted() {
+  //   console.warn(remote.app.getPath());
+  // },
   watch: {
     url(val) {
       this.getSitemap();
@@ -66,59 +65,7 @@ export default {
   margin-top: 40px;
   width: 100%;
 }
-select,
-input {
-  width: 100%;
-  padding: 7px 0 7px 10px;
-  font-size: 16px;
-  line-height: 1em;
-}
-[type="button"],
-[type="submit"],
-button,
-.btn {
-  padding: $base-margin;
-  border-color: $brand-one;
-  background-color: $brand-one;
-  color: $brand-light;
-  font-weight: 600;
-  font-size: 24px;
-  transition: transform;
-  transition-duration: 300ms;
-  transition-timing-function: ease;
-  &:hover {
-    transform: scale(1.05);
-  }
-}
-.input {
-  margin-bottom: $base-margin * 2;
-  label {
-    font-size: 34px;
-    font-weight: 900;
-    color: $brand-three;
-    margin-bottom: -0.35em;
-  }
-  input,
-  label {
-    display: block;
-  }
-  input {
-    position: relative;
-    z-index: 900;
-    margin-bottom: 10px;
-    border: 2px solid;
-    border-color: $brand-three;
-    &:focus {
-      outline: none;
-      border-color: $brand-one;
-    }
-  }
-  .description {
-    font-size: 16px;
-    width: 100%;
-    color: $brand-three;
-  }
-}
+
 [type="file"]::-webkit-file-upload-button {
   visibility: hidden;
 }

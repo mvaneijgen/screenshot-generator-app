@@ -212,4 +212,76 @@ button,
     transform: scale(1.05);
   }
 }
+select,
+input {
+  width: 100%;
+  padding: 7px 0 7px 10px;
+  font-size: 16px;
+  line-height: 1em;
+}
+[type="button"],
+[type="submit"],
+button,
+.btn {
+  padding: $base-margin;
+  border-color: $brand-one;
+  background-color: $brand-one;
+  color: $brand-light;
+  font-weight: 600;
+  font-size: 24px;
+  transition: transform;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+.btn-small {
+  font-size: 16px;
+  padding: 5px;
+}
+.btn-none {
+  background-color: transparent;
+  padding: 0;
+  display: inline;
+  font-size: inherit;
+  // font-size: 16px;
+  color: inherit;
+  width: auto;
+  font-weight: 400;
+  text-decoration: underline;
+}
+.input {
+  margin-bottom: $base-margin * 2;
+  label {
+    font-size: 34px;
+    font-weight: 900;
+    color: $brand-three;
+    margin-bottom: -0.35em;
+  }
+  input,
+  label {
+    display: block;
+  }
+  input {
+    position: relative;
+    z-index: 900;
+    margin-bottom: 10px;
+    border: 2px solid;
+    border-color: $brand-three;
+    &:focus {
+      outline: none;
+      border-color: $brand-one;
+    }
+  }
+  .description {
+    font-size: 16px;
+    width: 100%;
+    color: $brand-three;
+  }
+}
+.content {
+  margin-top: 40px;
+  width: 100%;
+}
 </style>

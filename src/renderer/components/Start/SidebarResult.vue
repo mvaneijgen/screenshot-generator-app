@@ -5,10 +5,15 @@
         <p>First step</p>
         <h3>Select at least one device from the list</h3>
       </div>
-      <div id="resutls" v-else-if="getSitemap.length < 1 && !getLoading" key="noSitemap">
+      <div id="resutls" v-else-if="getPath == ''">
         <p>Next step</p>
+        <h3>Select the path of where you want the screenshots to be saved</h3>
+      </div>
+      <div id="resutls" v-else-if="getSitemap.length < 1 && !getLoading" key="noSitemap">
+        <p>Last step</p>
         <h3>Add the url to your sitemap</h3>
       </div>
+
       <div id="resutls" v-else-if="getLoading" key="loading">
         <p>Loading</p>
         <h3>Fetching your sitemap</h3>
@@ -35,6 +40,9 @@ export default {
     },
     getLoading() {
       return this.$store.getters["Devices/getLoading"];
+    },
+    getPath() {
+      return this.$store.getters["Devices/getPath"];
     },
     getSitemap() {
       return this.$store.getters["Devices/getSitemap"];
