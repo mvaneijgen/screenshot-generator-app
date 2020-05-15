@@ -1,6 +1,6 @@
-# Screenshot Generator
+[![https://imgur.com/bi7t3XU.png](https://imgur.com/bi7t3XU.png)](https://imgur.com/bi7t3XU.png)
 
-An app that will generate screenshots of all pages of a website on multiple devices
+> An app that will generate screenshots of all pages of a website on multiple devices
 
 [![https://i.imgur.com/pTSFKqk.png](https://i.imgur.com/pTSFKqk.png)](https://i.imgur.com/pTSFKqk.png)
 

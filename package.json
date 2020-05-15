@@ -1,8 +1,8 @@
 {
-  "name": "screenshot-app",
+  "name": "Screenshot Generator",
   "version": "0.0.1",
   "author": "Mitchel van Eijgen <mvaneijgen@gmail.com>",
-  "description": "An electron-vue project",
+  "description": "Take screenshots of your whole websites on multiple devices screen sizes",
   "license": null,
   "main": "./dist/electron/main.js",
   "scripts": {
@@ -41,10 +41,10 @@
       ]
     },
     "mac": {
-      "icon": "build/icons/icon.icns"
+      "icon": "build/icons/512x512.png"
     },
     "win": {
-      "icon": "build/icons/icon.ico"
+      "icon": "build/icons/512x512.png"
     },
     "linux": {
       "icon": "build/icons"
