@@ -13,17 +13,19 @@ The app has a build in list of devcies of which you can select the once you want
 > If your `README` has a lot of info, section headers might be nice.
 
 - [Installation](#installation)
-- [Features](#features)
-- [Contributing](#contributing)
-- [Authors](#Authors)
+- [Built With](#built-with)
+- [Todo list](#todo-list)
 - [FAQ](#faq)
+- [Authors](#Authors)
+- [Contributing](#contributing)
 - [Support](#support)
 - [License](#license)
 
-## Usage 
-
 ## Installation
 
+Download the latest version from the [Github Releases tab](https://github.com/mvaneijgen/screenshot-generator-app/releases)
+
+### Want to edit the project?
 #### Build Setup
 
 ``` bash
@@ -42,24 +44,33 @@ yarn run build
 #or
 npm run build
 ```
+
+## Todo list 
+
+- [x] User interface
+- [ ] App icon
+- [ ] Node.js Puppeteer child process 
+- [ ] Create a loading animation while node script is running
+
 ## Built With
 
 * [electron-vue](electron-vue) - The boilerplate for making electron applications built with vue
 * [Puppeteer](https://github.com/puppeteer/puppeteer) - Puppeteer is a controllable Chrome browser this is what generates the screenshots 
-
-## Authors
-| [mvaneijgen](https://github.com/mvaneijgen) | 
-| :---: |:---:| :---:|
-| [![mvaneijgen](https://avatars1.githubusercontent.com/u/3217544?v=4&s=200)](http://fvcproductions.com)    |
-| <a href="http://github.com/mvaneijgen" target="_blank">`github.com/mvaneijgen`</a> |
-| Design & Development|
-
-See also the list of [contributors](https://github.com/mvaneijgen/screenshot-generator-app/contributors) who participated in this project.
+* [Streamline Icons](https://streamlineicons.com) - Icon set 
 
 ## FAQ
 
 - **Does this project work?**
     - Nope. Sadly it is stuck on running a Node.js Puppeteer script from Electron-vue. If that is fixed it will work like a charm.
+
+## Authors
+| [mvaneijgen](https://github.com/mvaneijgen) | 
+| :---: |
+| [![mvaneijgen](https://avatars1.githubusercontent.com/u/3217544?v=4&s=200)](http://fvcproductions.com)    |
+| <a href="http://github.com/mvaneijgen" target="_blank">`github.com/mvaneijgen`</a> |
+| Design & Development |
+
+See also the list of [contributors](https://github.com/mvaneijgen/screenshot-generator-app/contributors) who participated in this project.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
