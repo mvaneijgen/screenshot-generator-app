@@ -1,16 +1,14 @@
-[![https://imgur.com/bi7t3XU.png](https://imgur.com/bi7t3XU.png)](https://imgur.com/bi7t3XU.png)
+[![Screenshot Generator Logo](https://imgur.com/bi7t3XU.png)](https://github.com/mvaneijgen/screenshot-generator-app)
 
 > An app that will generate screenshots of all pages of a website on multiple devices
 
-[![https://i.imgur.com/pTSFKqk.png](https://i.imgur.com/pTSFKqk.png)](https://i.imgur.com/pTSFKqk.png)
+[![Screenshot Generator App Preview](https://i.imgur.com/pTSFKqk.png)](https://github.com/mvaneijgen/screenshot-generator-app)
 
 ## Getting Started
 
 The app has a build in list of devcies of which you can select the once you want screenshots of. After that you can add a sitemap.xml of the site you want to generate a screenshot of. This can be h
 
 ## Table of Contents (Optional)
-
-> If your `README` has a lot of info, section headers might be nice.
 
 - [Installation](#installation)
 - [Built With](#built-with)

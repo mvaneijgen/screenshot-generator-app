@@ -1,5 +1,5 @@
 {
-  "name": "Screenshot Generator",
+  "name": "screenshot-generator",
   "version": "0.0.1",
   "author": "Mitchel van Eijgen <mvaneijgen@gmail.com>",
   "description": "Take screenshots of your whole websites on multiple devices screen sizes",
@@ -17,8 +17,8 @@
     "postinstall": ""
   },
   "build": {
-    "productName": "screenshot-app",
-    "appId": "com.example.yourapp",
+    "productName": "Screenshot Generator",
+    "appId": "com.example.screenshotgenerator",
     "directories": {
       "output": "build"
     },
