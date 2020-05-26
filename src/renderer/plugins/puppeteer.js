@@ -1,4 +1,4 @@
-console.warn('invoked puppeteer.js 🎉');
+
 
 const fs = require('fs'); // Write to local file system
 const puppeteer = require('puppeteer');
@@ -7,6 +7,13 @@ const puppeteer = require('puppeteer');
 // const devices = this.getSelectedDevices;
 // const sitemap = this.getSitemap;
 // const path = this.getPath;
+
+// module.exports = {
+//   foo: () => {
+//     console.log('foo says')
+//   }
+// }
+console.warn('invoked puppeteer.js 🎉');
 
 async function generateScreenshots(sitemap, devices, fileStorage) {
   // Error?

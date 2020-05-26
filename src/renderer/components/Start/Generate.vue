@@ -1,23 +1,63 @@
 <template>
-  <!-- <button @click="generate" :disabled="getSitemap.length < 1 || getSelectedDevices.length < 1">Generate</button> -->
-  <button @click="generateScreenshots">Generate</button>
+  <div>
+    <!-- <button @click="generate" :disabled="getSitemap.length < 1 || getSelectedDevices.length < 1">Generate</button> -->
+    <button @click="generateScreenshots">Generate</button>
+    <button @click="thisDoesSomething">thisDoesSomething</button>
+  </div>
 </template>
 
 <script>
-// ! Tests to get Puppeteer running
-// import path from "path";
-// import { remote } from "electron";
-// const { spawn } = require("child_process");
-// var childProcess = require("child_process");
-// const { fork, spawn } = require("child_process");
-// // const { fork, spawn } = require("child_process");
-// const path = require("path");
-// const { ipcRenderer } = require("electron");
+// // const { spawn } = require("child_process");
+// // const { ipcMain } = require("electron");
+// // const { remote } = require("electron");
+// // const { ipcRenderer } = require("electron");
+// const electron = require("electron");
+// const ipc = electron.ipcRenderer;
+// const { puppeteerScript } = require("../../plugins/puppeteer.js");
+const { ipc } = require("electron");
 
-const { spawn } = require("child_process");
 const path = require("path");
+const { spawn, fork } = require("child_process");
 
 export default {
+  methods: {
+    generateScreenshots() {
+      let child = spawn(
+        "node",
+        [path.join(__dirname, "../../plugins/puppeteer.js")],
+        { stdio: ["pipe", "inherit", "inherit"] },
+      );
+      child.on("error", function(err) {
+        console.log("err on spawn ", err);
+      });
+      child.stdin.write("console.log('Hello from your parent')");
+      child.stdin.end();
+    },
+    // TODO: run `../../plugins/puppeteer.js` from there
+    thisDoesSomething() {
+      // TODO: send the following parameters with it
+      console.warn(
+        spawn("node", [path.join(__dirname, "../../plugins/puppeteer.js")]),
+      );
+      const child = spawn("node", [
+        path.join(__dirname, "../../plugins/puppeteer.js"),
+      ]);
+
+      // const child = spawn("node", ["-v"]);
+
+      // I don't know what this does
+      child.stdout.on("data", function(data) {
+        console.log(data);
+      });
+
+      // I don't know what this does
+      child.stderr.on("data", function(data) {
+        console.log(data);
+      });
+
+      console.warn(child);
+    },
+  },
   computed: {
     getSelectedDevices() {
       return this.$store.getters["Devices/getSelectedDevices"];
@@ -29,85 +69,11 @@ export default {
       return this.$store.getters["Devices/getPath"];
     },
   },
-  methods: {
-    // TODO: run `../../plugins/puppeteer.js` from there
-    generateScreenshots() {
-      // TODO: send the following parameters with it
-      const devices = this.getSelectedDevices;
-      const sitemap = this.getSitemap;
-      const path = this.getPath;
-
-      const ls = spawn(process.execPath, [
-        path.join(__dirname, "../../plugins/puppeteer.js"),
-      ]);
-
-      ls.stdout.on("data", data => {
-        console.log(`stdout: ${data}`);
-      });
-
-      ls.stderr.on("data", data => {
-        console.error(`stderr: ${data}`);
-      });
-
-      ls.on("close", code => {
-        console.log(`child process exited with code ${code}`);
-      });
-    },
-    // ! Not working
-    // generateFork() {
-    //   const p = fork(
-    //     path.join(__dirname, "../../plugins/puppeteer.js"),
-    //     ["hello"],
-    //     {
-    //       stdio: ["pipe", "pipe", "pipe", "ipc"],
-    //     },
-    //   );
-    //   p.stdout.on("data", d => {
-    //     writeData("[stdout-renderer-fork] " + d.toString());
-    //   });
-    //   p.stderr.on("data", d => {
-    //     writeData("[stderr-renderer-fork] " + d.toString());
-    //   });
-    //   p.send("hello");
-    //   p.on("message", m => {
-    //     writeData("[ipc-main-fork] " + m);
-    //   });
-    //   function writeData(data) {
-    //     console.warn(data);
-    //   }
-    // },
-    // ! Not working
-    // generateSpawn() {
-    //   let sp = childProcess.spawn(
-    //     process.execPath,
-    //     ["../../plugins/puppeteer.js"],
-    //     {
-    //       stdio: "pipe",
-    //     },
-    //   );
-    //   sp.unref();
-    //   sp.on("error", err => {
-    //     console.log("failed to start process", err);
-    //   });
-    //   sp.on("exit", (code, signal) => {
-    //     console.log(`child process exited with code ${code}`);
-    //     // createProc();
-    //   });
-    //   //       spawn(process.execPath, ["./go.js"], { stdio: "ignore" });
-    //   // console.warn("test");
-    //   // spawn(
-    //   //   process.execPath,
-    //   //   [path.join(__dirname, "plugins/puppeteer.js"), "args"],
-    //   //   {
-    //   //     stdio: "pipe",
-    //   //   },
-    //   // );
-    // },
-  },
 };
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/_variables.scss";
+
 button:disabled {
   background-color: $brand-dark-lighten;
   color: rgba($brand-light, 0.3);
