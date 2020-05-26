@@ -7,24 +7,17 @@
 </template>
 
 <script>
-// // const { spawn } = require("child_process");
-// // const { ipcMain } = require("electron");
-// // const { remote } = require("electron");
-// // const { ipcRenderer } = require("electron");
-// const electron = require("electron");
-// const ipc = electron.ipcRenderer;
-// const { puppeteerScript } = require("../../plugins/puppeteer.js");
-const { ipc } = require("electron");
-
 const path = require("path");
 const { spawn, fork } = require("child_process");
 
 export default {
   methods: {
+    // TODO: run `../../plugins/puppeteer.js` from here
     generateScreenshots() {
+      // TODO: send the following parameters with it
       let child = spawn(
         "node",
-        [path.join(__dirname, "../../plugins/puppeteer.js")],
+        [path.join(__dirname, "../../plugins/puppeteer-testing.js")],
         { stdio: ["pipe", "inherit", "inherit"] },
       );
       child.on("error", function(err) {
@@ -33,9 +26,8 @@ export default {
       child.stdin.write("console.log('Hello from your parent')");
       child.stdin.end();
     },
-    // TODO: run `../../plugins/puppeteer.js` from there
+    // ! Delete this block just for testing
     thisDoesSomething() {
-      // TODO: send the following parameters with it
       console.warn(
         spawn("node", [path.join(__dirname, "../../plugins/puppeteer.js")]),
       );
@@ -57,6 +49,7 @@ export default {
 
       console.warn(child);
     },
+    // ! END Delete this block just for testing
   },
   computed: {
     getSelectedDevices() {

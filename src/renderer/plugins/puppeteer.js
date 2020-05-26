@@ -1,19 +1,20 @@
-
+// ! Test if this is invoked 
+console.warn('invoked puppeteer.js 🎉');
 
 const fs = require('fs'); // Write to local file system
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer'); // Control a version of Chrome
 
 // TODO: needs to get `sitemap, devices, fileStorage` from:
 // const devices = this.getSelectedDevices;
 // const sitemap = this.getSitemap;
-// const path = this.getPath;
+// const filePath = this.getPath;
 
 // module.exports = {
 //   foo: () => {
 //     console.log('foo says')
 //   }
 // }
-console.warn('invoked puppeteer.js 🎉');
+
 
 async function generateScreenshots(sitemap, devices, fileStorage) {
   // Error?
@@ -125,11 +126,11 @@ async function generateScreenshots(sitemap, devices, fileStorage) {
   }
 }
 // module.exports = generateScreenshots; // Changed line
-
-try {
-  // run these statements once to set up the db
-  let generate = await generateScreenshots();
-  generate;
-} catch (err) {
-  console.log(err);
-}
+generateScreenshots();
+// try {
+//   // run these statements once to set up the db
+//   let generate = await generateScreenshots();
+//   generate;
+// } catch (err) {
+//   console.log(err);
+// }
