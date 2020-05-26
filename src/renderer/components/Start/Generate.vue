@@ -1,9 +1,6 @@
 <template>
-  <div>
-    <!-- <button @click="generate" :disabled="getSitemap.length < 1 || getSelectedDevices.length < 1">Generate</button> -->
-    <button @click="generateScreenshots">Generate</button>
-    <button @click="thisDoesSomething">thisDoesSomething</button>
-  </div>
+  <!-- <button @click="generate" :disabled="getSitemap.length < 1 || getSelectedDevices.length < 1">Generate</button> -->
+  <button @click="generateScreenshots">Generate</button>
 </template>
 
 <script>
@@ -17,7 +14,12 @@ export default {
       // TODO: send the following parameters with it
       let child = spawn(
         "node",
-        [path.join(__dirname, "../../plugins/puppeteer-testing.js")],
+        [
+          path.join(__dirname, "../../plugins/puppeteer-testing.js"),
+          this.getSelectedDevices,
+          this.getSitemap,
+          this.getPath,
+        ],
         { stdio: ["pipe", "inherit", "inherit"] },
       );
       child.on("error", function(err) {
@@ -26,30 +28,6 @@ export default {
       child.stdin.write("console.log('Hello from your parent')");
       child.stdin.end();
     },
-    // ! Delete this block just for testing
-    thisDoesSomething() {
-      console.warn(
-        spawn("node", [path.join(__dirname, "../../plugins/puppeteer.js")]),
-      );
-      const child = spawn("node", [
-        path.join(__dirname, "../../plugins/puppeteer.js"),
-      ]);
-
-      // const child = spawn("node", ["-v"]);
-
-      // I don't know what this does
-      child.stdout.on("data", function(data) {
-        console.log(data);
-      });
-
-      // I don't know what this does
-      child.stderr.on("data", function(data) {
-        console.log(data);
-      });
-
-      console.warn(child);
-    },
-    // ! END Delete this block just for testing
   },
   computed: {
     getSelectedDevices() {

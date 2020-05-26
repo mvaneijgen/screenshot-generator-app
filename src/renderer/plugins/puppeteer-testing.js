@@ -1,6 +1,6 @@
 // ! Test if this is invoked 
 console.warn('invoked puppeteer.js 🎉');
-
+console.log(process.argv);
 const fs = require('fs'); // Write to local file system
 const puppeteer = require('puppeteer'); // Control a version of Chrome
 
