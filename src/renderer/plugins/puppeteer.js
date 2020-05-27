@@ -48,12 +48,12 @@ async function generateScreenshots(sitemap, devices, fileStorage) {
         args: ["--no-sandbox", "--disable-setuid-sandbox"],
         executablePath: getChromiumExecPath()
       });
-
-      await browser.connect({
-        browserWSEndpoint: 'node_modules/puppeteer/.local-chromium/**/*'
-      });
-
       let page = await browser.newPage();
+
+      // await browser.connect({
+      //   browserWSEndpoint: 'node_modules/puppeteer/.local-chromium/**/*'
+      // });
+
 
       for (let i = 0, len = devices.length; i < len; i++) {
         let device = devices[i];

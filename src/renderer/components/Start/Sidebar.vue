@@ -4,8 +4,8 @@
       <span>Screenshot</span>
       <span>Generator</span>
     </div>
-    <fileStorage />
     <Sitemap />
+    <fileStorage />
     <SidebarResult />
     <Generate />
   </aside>

@@ -19,7 +19,7 @@
         <h3>Fetching your sitemap</h3>
       </div>
       <div id="resutls" v-else-if="getSitemap.length >= 1 && getSelectedDevices.length >= 1" key="result">
-        <p>Found {{getSitemap.length}} in sitemap</p>
+        <p>Found {{getSitemap.length}} pages in sitemap</p>
         <h3 v-html="getURL"></h3>
         <p> This wil result in</p>
         <h3>📱 {{getSelectedDevices.length}} <span> devices</span> x 📃 {{getSitemap.length}} <span>pages</span></h3>
