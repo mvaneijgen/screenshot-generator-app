@@ -48,14 +48,16 @@ const fileStorage = JSON.parse(args[4]);
       let imageName = device.width + "-" + convertURL + ".jpg";
 
       await page.goto(url, {
-        waitUntil: "networkidle2",
+        waitUntil: "networkidle0",
       });
 
       //------------------------------------------------------//
-      // View Height (vw) fix 
+      // View Height (vh) fix 
+      // 📝 Not working screenshot is white from the under the fold
       //------------------------------------------------------//
       // const bodyHandle = await page.$("body");
       // const { width, height } = await bodyHandle.boundingBox();
+
       // await page.screenshot({
       //   path: deviceDirectory + imageName,
       //   // fullPage: true,
@@ -69,11 +71,28 @@ const fileStorage = JSON.parse(args[4]);
       // END View Height (vw) fix -------------------------------------//
 
       //------------------------------------------------------//
+      // Other clip solution https://github.com/puppeteer/puppeteer/issues/1273
+      // 📝 Not working screenshot is white from the under the fold
+      //------------------------------------------------------//
+      // let [height, width] = await page.evaluate(() => {
+      //   return [
+      //     document.getElementsByTagName('html')[0].offsetHeight,
+      //     document.getElementsByTagName('html')[0].offsetWidth
+      //   ]
+      // })
+
+      // await page.screenshot({
+      //   path: deviceDirectory + imageName,
+      //   clip: { x: 0, y: 0, width, height }
+      // })
+      // END Other clip solution  -------------------------------------//
+
+      //------------------------------------------------------//
       // fullPageScreenshot npm module 
+      // 📝 Error fullPageScreenshot is not a function
       //------------------------------------------------------//
       await fullPageScreenshot(page, { path: deviceDirectory + imageName });
       // END fullPageScreenshot npm module -------------------------------------//
-
 
     }
   }
