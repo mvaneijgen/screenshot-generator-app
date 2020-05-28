@@ -21,7 +21,7 @@ export default {
       let child = spawn(
         "node",
         [
-          path.join(__dirname, "../../plugins/puppeteer-testing.js"),
+          path.join(__dirname, "../../plugins/puppeteer.js"),
           JSON.stringify(this.getSitemap),
           JSON.stringify(this.getSelectedDevices),
           JSON.stringify(this.getPath),
