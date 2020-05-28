@@ -1,19 +1,18 @@
 <template>
   <div>
     <transition name="custom" mode="out-in">
-      <div id="resutls" v-if="getSelectedDevices.length < 1" key="noDevices">
+      <div id="resutls" v-if="getSitemap.length < 1 && !getLoading" key="noSitemap">
         <p>First step</p>
-        <h3>Select at least one device from the list</h3>
+        <h3>Add the url to your sitemap</h3>
       </div>
       <div id="resutls" v-else-if="getPath == ''">
         <p>Next step</p>
         <h3>Select the path of where you want the screenshots to be saved</h3>
       </div>
-      <div id="resutls" v-else-if="getSitemap.length < 1 && !getLoading" key="noSitemap">
+      <div id="resutls" v-else-if="getSelectedDevices.length < 1" key="noDevices">
         <p>Last step</p>
-        <h3>Add the url to your sitemap</h3>
+        <h3>Select at least one device from the list</h3>
       </div>
-
       <div id="resutls" v-else-if="getLoading" key="loading">
         <p>Loading</p>
         <h3>Fetching your sitemap</h3>
