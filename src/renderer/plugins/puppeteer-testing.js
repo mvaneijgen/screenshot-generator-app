@@ -10,7 +10,7 @@ const fileStorage = JSON.parse(args[4]);
 
 (async () => {
 
-  const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
   for (let i = 0, len = devices.length; i < len; i++) {
@@ -48,26 +48,27 @@ const fileStorage = JSON.parse(args[4]);
       let imageName = device.width + "-" + convertURL + ".jpg";
 
       await page.goto(url, {
-        waitUntil: "networkidle0",
+        waitUntil: "networkidle2",
       });
 
       //------------------------------------------------------//
       // View Height (vh) fix 
       // 📝 Not working screenshot is white from the under the fold
       //------------------------------------------------------//
-      // const bodyHandle = await page.$("body");
-      // const { width, height } = await bodyHandle.boundingBox();
-
-      // await page.screenshot({
-      //   path: deviceDirectory + imageName,
-      //   // fullPage: true,
-      //   clip: {
-      //     x: 0,
-      //     y: 0,
-      //     width,
-      //     height,
-      //   },
-      // });
+      const bodyHandle = await page.$("body");
+      let { width, height } = await bodyHandle.boundingBox();
+      height = parseInt(height);
+      console.warn(height);
+      await page.screenshot({
+        path: deviceDirectory + imageName,
+        // fullPage: true,
+        clip: {
+          x: 0,
+          y: 0,
+          width,
+          height,
+        },
+      });
       // END View Height (vw) fix -------------------------------------//
 
       //------------------------------------------------------//
@@ -91,7 +92,7 @@ const fileStorage = JSON.parse(args[4]);
       // fullPageScreenshot npm module 
       // 📝 Error fullPageScreenshot is not a function
       //------------------------------------------------------//
-      await fullPageScreenshot(page, { path: deviceDirectory + imageName });
+      // await fullPageScreenshot(page, { path: deviceDirectory + imageName });
       // END fullPageScreenshot npm module -------------------------------------//
 
     }
