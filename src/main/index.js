@@ -18,13 +18,14 @@ function createWindow() {
    * Initial window options
    */
   mainWindow = new BrowserWindow({
-    height: 563,
     useContentSize: true,
-    width: 1000,
+    width: 1280,
+    height: 900,
     titleBarStyle: 'hiddenInset',
 
     webPreferences: {
-      nodeIntegration: true // add this
+      nodeIntegration: true, // add this
+      devTools: true
     }
   })
 
@@ -46,7 +47,8 @@ function createWindow() {
       { label: 'Cut', accelerator: 'CmdOrCtrl+X', selector: 'cut:' },
       { label: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
       { label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
-      { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' }
+      { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
+      { label: 'Developer Tools', accelerator: 'Alt+CmdOrCtrl+I', selector: 'devTools:' }
     ]
   }
   ]

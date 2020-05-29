@@ -1,5 +1,6 @@
 const fs = require('fs'); // Write to local file system
 const puppeteer = require('puppeteer'); // Control a version of Chrome
+const { default: fullPageScreenshot } = require("puppeteer-full-page-screenshot");
 // const fullPageScreenshot = require("puppeteer-full-page-screenshot");
 // import fullPageScreenshot from "puppeteer-full-page-screenshot";
 
@@ -8,9 +9,18 @@ const sitemap = JSON.parse(args[2]);
 const devices = JSON.parse(args[3]);
 const fileStorage = JSON.parse(args[4]);
 
+function getChromiumExecPath() {
+  return puppeteer.executablePath().replace('app.asar', 'app.asar.unpacked');
+}
+
 (async () => {
 
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch(
+    {
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      executablePath: getChromiumExecPath()
+    }
+  );
   const page = await browser.newPage();
 
   for (let i = 0, len = devices.length; i < len; i++) {
@@ -50,11 +60,16 @@ const fileStorage = JSON.parse(args[4]);
       await page.goto(url, {
         waitUntil: "networkidle2",
       });
-      await page.screenshot({
+      // await page.screenshot({
+      //   path: deviceDirectory + imageName,
+      //   type: 'jpeg',
+      //   quality: 60,
+      //   fullPage: true,
+      // });
+      await fullPageScreenshot(page, {
         path: deviceDirectory + imageName,
         type: 'jpeg',
         quality: 60,
-        fullPage: true,
       });
     }
   }
