@@ -1,6 +1,6 @@
 const fs = require('fs'); // Write to local file system
 const puppeteer = require('puppeteer'); // Control a version of Chrome
-const fullPageScreenshot = require("puppeteer-full-page-screenshot");
+// const fullPageScreenshot = require("puppeteer-full-page-screenshot");
 // import fullPageScreenshot from "puppeteer-full-page-screenshot";
 
 const args = process.argv;
