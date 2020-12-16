@@ -46,8 +46,8 @@ npm run build
 ## Todo list 
 
 - [x] User interface
-- [ ] App icon
-- [ ] Node.js Puppeteer child process 
+- [x] App icon
+- [x] Node.js Puppeteer child process 
 - [ ] Create a loading animation while node script is running
 
 ## Built With

@@ -11,12 +11,6 @@ export default {
   methods: {
     // TODO: run `../../plugins/puppeteer.js` from here
     generateScreenshots() {
-      // const dataObj = {
-      //   sitemap: this.getSitemap,
-      //   devices: this.getSelectedDevices,
-      //   savePath: this.getPath,
-      // };
-      console.warn(this.getSelectedDevices);
       // TODO: send the following parameters with it
       let child = spawn(
         "node",
@@ -26,8 +20,11 @@ export default {
           JSON.stringify(this.getSelectedDevices),
           JSON.stringify(this.getPath),
         ],
-        { stdio: ["pipe", "inherit", "inherit"] },
+        {
+          stdio: ["pipe", "inherit", "inherit"],
+        },
       );
+      console.warn(child);
       child.on("error", function(err) {
         console.log("err on spawn ", err);
       });
