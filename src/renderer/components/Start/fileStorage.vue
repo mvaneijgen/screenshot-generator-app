@@ -4,7 +4,6 @@
       <label for="folderPath">Save destination</label>
       <input id="folderPath" ref="input" @focus="getFileStorage" placeholder="Add save location">
       <div class="description">Select the path of where you want to store the screenshots. <button class="btn-none" @click="openDialog">Open location dialog</button>.</div>
-      {{path}}
     </div>
   </div>
 </template>
@@ -31,10 +30,9 @@ export default {
         {
           properties: ["openDirectory"],
         },
-        folder => {
+        (folder) => {
           if (folder === undefined) return;
           folder = folder[0];
-          console.warn(folder);
           this.path = folder;
           this.hasPath = true;
           this.$refs.input.value = folder;

@@ -303,6 +303,7 @@ const state = {
   sitemap: [],
   loading: false,
   path: '',
+  pathChrome: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
 }
 
 const actions = {
@@ -326,6 +327,9 @@ const actions = {
   },
   SET_PATH({ commit }, payload) {
     commit('SET_PATH', payload);
+  },
+  SET_PATH_CHROME({ commit }, payload) {
+    commit('SET_PATH_CHROME', payload);
   },
 }
 
@@ -355,6 +359,9 @@ const mutations = {
   SET_PATH(state, payload) {
     state.path = payload;
   },
+  SET_PATH_CHROME(state, payload) {
+    state.pathChrome = payload;
+  },
 }
 
 const getters = {
@@ -378,6 +385,9 @@ const getters = {
   },
   getPath: state => {
     return state.path;
+  },
+  getPathChrome: state => {
+    return state.pathChrome;
   },
 }
 

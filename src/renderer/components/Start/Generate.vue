@@ -19,13 +19,14 @@ export default {
           JSON.stringify(this.getSitemap),
           JSON.stringify(this.getSelectedDevices),
           JSON.stringify(this.getPath),
+          JSON.stringify(this.getPathChrome),
         ],
         {
           stdio: ["pipe", "inherit", "inherit"],
         },
       );
       console.warn(child);
-      child.on("error", function(err) {
+      child.on("error", function (err) {
         console.log("err on spawn ", err);
       });
       child.stdin.write("console.log('Hello from your parent')");
@@ -41,6 +42,9 @@ export default {
     },
     getPath() {
       return this.$store.getters["Devices/getPath"];
+    },
+    getPathChrome() {
+      return this.$store.getters["Devices/getPathChrome"];
     },
   },
 };

@@ -25,8 +25,6 @@
     "files": [
       "dist/electron/**/*"
     ],
-    "asar": true,
-    "asarUnpack": "node_modules/puppeteer/.local-chromium/**/*",
     "mac": {
       "icon": "build/icons/512x512.png",
       "target": "pkg"
@@ -41,7 +39,9 @@
   "dependencies": {
     "axios": "^0.18.0",
     "puppeteer": "^3.0.2",
+    "puppeteer-core": "^5.5.0",
     "puppeteer-full-page-screenshot": "^1.0.5",
+    "puppeteer-in-electron": "^3.0.3",
     "sitemapper": "^3.0.5",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",

@@ -1,26 +1,29 @@
 console.warn('banaan');
 
 const fs = require('fs'); // Write to local file system
-const puppeteer = require('puppeteer'); // Control a version of Chrome
+const puppeteer = require('puppeteer-core'); // Control a version of Chrome
+// const puppeteer = require('puppeteer-core'); // Control a version of Chrome
 const { default: fullPageScreenshot } = require("puppeteer-full-page-screenshot");
 // const fullPageScreenshot = require("puppeteer-full-page-screenshot");
 // import fullPageScreenshot from "puppeteer-full-page-screenshot";
-
+console.warn(puppeteer);
 const args = process.argv;
 const sitemap = JSON.parse(args[2]);
 const devices = JSON.parse(args[3]);
 const fileStorage = JSON.parse(args[4]);
+const pathChrome = JSON.parse(args[5]);
 
-function getChromiumExecPath() {
-  return puppeteer.executablePath().replace('app.asar', 'app.asar.unpacked');
-}
+// function getChromiumExecPath() {
+//   return puppeteer.executablePath().replace('app.asar', 'app.asar.unpacked');
+// }
 
 (async () => {
 
   const browser = await puppeteer.launch(
     {
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      executablePath: getChromiumExecPath()
+      // executablePath: getChromiumExecPath()
+      executablePath: pathChrome
     }
   );
   const page = await browser.newPage();

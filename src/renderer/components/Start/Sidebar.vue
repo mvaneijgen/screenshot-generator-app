@@ -5,8 +5,9 @@
       <span>Generator</span>
     </div>
     <Sitemap />
-    <fileStorage />
+    <FileStorage />
     <SidebarResult />
+    <ChromePath />
     <Generate />
   </aside>
 </template>
@@ -14,14 +15,16 @@
 <script>
 import Sitemap from "@/components/Start/Sitemap";
 import Generate from "@/components/Start/Generate";
-import fileStorage from "@/components/Start/fileStorage";
+import FileStorage from "@/components/Start/FileStorage";
+import ChromePath from "@/components/Start/ChromePath";
 import SidebarResult from "@/components/Start/SidebarResult";
 
 export default {
   components: {
     Sitemap,
     Generate,
-    fileStorage,
+    FileStorage,
+    ChromePath,
     SidebarResult,
   },
 };
