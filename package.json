@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "puppeteer": "^5.5.0",
     "puppeteer-core": "^5.5.0",
     "puppeteer-full-page-screenshot": "^1.0.5",
     "puppeteer-in-electron": "^3.0.3",

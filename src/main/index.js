@@ -1,5 +1,6 @@
 import { app, BrowserWindow, Menu, ipcMain } from 'electron'
-import puppeteer from 'puppeteer-core'; // Control a version of Chrome
+// import puppeteer from 'puppeteer-core';
+import puppeteer from 'puppeteer';
 
 import store from '../renderer/store'
 
@@ -81,7 +82,9 @@ ipcMain.on("clicktest", async event => {
 
   // .local-chromium needs to be at the same level with the app
   const browser = await puppeteer.launch({
-    headless: false
+    // headless: false,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
   });
   const page = await browser.newPage();
   await page.goto("https://google.com");
