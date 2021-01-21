@@ -1,5 +1,8 @@
-import { app, BrowserWindow, Menu } from 'electron'
+import { app, BrowserWindow, Menu, ipcMain } from 'electron'
+import puppeteer from 'puppeteer-core'; // Control a version of Chrome
+
 import store from '../renderer/store'
+
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -73,6 +76,17 @@ app.on('activate', () => {
   }
 })
 
+ipcMain.on("clicktest", async event => {
+  console.log("clicktest from app.js");
+
+  // .local-chromium needs to be at the same level with the app
+  const browser = await puppeteer.launch({
+    headless: false
+  });
+  const page = await browser.newPage();
+  await page.goto("https://google.com");
+  await page.screenshot({ path: "example.png" });
+});
 /**
  * Auto Updater
  *

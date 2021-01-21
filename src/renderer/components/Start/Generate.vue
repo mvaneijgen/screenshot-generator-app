@@ -1,36 +1,37 @@
 <template>
-  <button @click="generateScreenshots" :disabled="getSitemap.length < 1 || getSelectedDevices.length < 1">Generate</button>
+  <!-- <button @click="generateScreenshots" :disabled="getSitemap.length < 1 || getSelectedDevices.length < 1">Generate</button> -->
+  <button @click="generateScreenshots">Generate</button>
   <!-- <button @click="generateScreenshots">Generate</button> -->
 </template>
 
 <script>
 const path = require("path");
-const { spawn, fork } = require("child_process");
+import { ipcRenderer } from "electron";
 
 export default {
   methods: {
-    // TODO: run `../../plugins/puppeteer.js` from here
     generateScreenshots() {
-      // TODO: send the following parameters with it
-      let child = spawn(
-        "node",
-        [
-          path.join(__dirname, "../../plugins/puppeteer.js"),
-          JSON.stringify(this.getSitemap),
-          JSON.stringify(this.getSelectedDevices),
-          JSON.stringify(this.getPath),
-          JSON.stringify(this.getPathChrome),
-        ],
-        {
-          stdio: ["pipe", "inherit", "inherit"],
-        },
-      );
-      console.warn(child);
-      child.on("error", function (err) {
-        console.log("err on spawn ", err);
-      });
-      child.stdin.write("console.log('Hello from your parent')");
-      child.stdin.end();
+      console.log("test from helloworld component");
+      ipcRenderer.send("clicktest");
+      // let child = spawn(
+      //   "node",
+      //   [
+      //     path.join(__dirname, "../../plugins/puppeteer.js"),
+      //     JSON.stringify(this.getSitemap),
+      //     JSON.stringify(this.getSelectedDevices),
+      //     JSON.stringify(this.getPath),
+      //     JSON.stringify(this.getPathChrome),
+      //   ],
+      //   {
+      //     stdio: ["pipe", "inherit", "inherit"],
+      //   },
+      // );
+      // console.warn(child);
+      // child.on("error", function (err) {
+      //   console.log("err on spawn ", err);
+      // });
+      // child.stdin.write("console.log('Hello from your parent')");
+      // child.stdin.end();
     },
   },
   computed: {
