@@ -1,19 +1,19 @@
 <template>
   <main>
-    <!-- <Sidebar /> -->
+    <Sidebar />
     <Devices />
   </main>
 </template>
 
 <script>
-// import Sidebar from "@/components/Start/Sidebar";
+import Sidebar from "@/components/Start/Sidebar";
 import Devices from "@/components/Devices/Devices";
 
 export default {
   name: "Start",
   components: {
     Devices,
-    // Sidebar,
+    Sidebar,
   },
   methods: {
     // open(link) {

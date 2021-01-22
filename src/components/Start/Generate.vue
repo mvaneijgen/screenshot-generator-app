@@ -5,14 +5,14 @@
 </template>
 
 <script>
-const path = require("path");
-import { ipcRenderer } from "electron";
+// const path = require("path");
+// import { ipcRenderer } from "electron";
 
 export default {
   methods: {
     generateScreenshots() {
-      console.log("test from helloworld component");
-      ipcRenderer.send("clicktest");
+      // console.log("test from helloworld component");
+      // ipcRenderer.send("clicktest");
       // let child = spawn(
       //   "node",
       //   [

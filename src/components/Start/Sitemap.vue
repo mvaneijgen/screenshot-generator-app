@@ -17,7 +17,7 @@
 </template>
 
 <script>
-const Sitemapper = require("sitemapper");
+// const Sitemapper = require("sitemapper");
 
 // import path from "path";
 // import { remote } from "electron";
@@ -30,32 +30,32 @@ export default {
     };
   },
   methods: {
-    getSitemap() {
-      const sitemap = new Sitemapper({
-        url: this.url,
-        timeout: 15000, // 15 seconds
-      });
-      this.$store.dispatch("SET_LOADING", true);
-      sitemap
-        .fetch()
-        .then((data) => {
-          this.$store.dispatch("SET_URL", data.url);
-          this.$store.dispatch("SET_SITEMAP", data.sites);
-          this.$store.dispatch("SET_LOADING", false);
-        })
-        .catch((error) => {
-          this.error = error;
-          console.log(error);
-        });
-    },
+    // getSitemap() {
+    //   const sitemap = new Sitemapper({
+    //     url: this.url,
+    //     timeout: 15000, // 15 seconds
+    //   });
+    //   this.$store.dispatch("SET_LOADING", true);
+    //   sitemap
+    //     .fetch()
+    //     .then((data) => {
+    //       this.$store.dispatch("SET_URL", data.url);
+    //       this.$store.dispatch("SET_SITEMAP", data.sites);
+    //       this.$store.dispatch("SET_LOADING", false);
+    //     })
+    //     .catch((error) => {
+    //       this.error = error;
+    //       console.log(error);
+    //     });
+    // },
   },
   // mounted() {
   //   console.warn(remote.app.getPath());
   // },
   watch: {
-    url(val) {
-      this.getSitemap();
-    },
+    // url() {
+    //   this.getSitemap();
+    // },
   },
 };
 </script>

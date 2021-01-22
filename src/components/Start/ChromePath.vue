@@ -10,9 +10,9 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { remote } from "electron";
-const dialog = remote.dialog;
-import path from "path";
+// import { remote } from "electron";
+// const dialog = remote.dialog;
+// import path from "path";
 
 export default {
   data() {
@@ -31,20 +31,20 @@ export default {
       }
     },
     openDialog() {
-      dialog.showOpenDialog(
-        {
-          properties: ["openFile"],
-        },
-        (item) => {
-          if (item === undefined) return;
-          console.warn(item);
-          item = item[0];
-          this.path = item;
-          this.hasPath = true;
-          this.$refs.input.value = item;
-          this.$store.dispatch("SET_PATH_CHROME", item);
-        },
-      );
+      // dialog.showOpenDialog(
+      //   {
+      //     properties: ["openFile"],
+      //   },
+      //   (item) => {
+      //     if (item === undefined) return;
+      //     console.warn(item);
+      //     item = item[0];
+      //     this.path = item;
+      //     this.hasPath = true;
+      //     this.$refs.input.value = item;
+      //     this.$store.dispatch("SET_PATH_CHROME", item);
+      //   },
+      // );
     },
   },
 };
