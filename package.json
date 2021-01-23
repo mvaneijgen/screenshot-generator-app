@@ -16,7 +16,6 @@
     "core-js": "^3.6.5",
     "node-sass": "^5.0.0",
     "puppeteer-core": "^5.5.0",
-    "puppeteer-full-page-screenshot": "^1.0.5",
     "sass-loader": "^10.1.1",
     "sitemapper": "^3.1.12",
     "vue": "^2.6.11",

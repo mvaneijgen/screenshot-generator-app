@@ -3,7 +3,8 @@
 
     <div class="input">
       <label for="">Sitemap URL</label>
-      <input id="url" type="url" v-model="url" placeholder="Add sitemap">
+      <!-- <input id="url" type="url" v-model="url" placeholder="Add sitemap" :value="getPath"> -->
+      <input id="url" type="url" placeholder="Add sitemap" :value="getURL">
       <div class="description">Example: https://domain.com/link/sitemap.xml</div>
     </div>
     <!-- <div id="or">OR</div>
@@ -17,6 +18,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 const Sitemapper = require("sitemapper");
 
 // import  from "";
@@ -28,6 +30,9 @@ export default {
       url: "",
       error: "",
     };
+  },
+  computed: {
+    ...mapGetters({ getURL: "getURL" }),
   },
   methods: {
     getSitemap() {

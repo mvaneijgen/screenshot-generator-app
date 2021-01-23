@@ -83,7 +83,7 @@ if (isDevelopment) {
 }
 
 require('./plugins/puppeteer.js');
-
+//
 // ipcMain.on("clicktest", async (event, a) => {
 //   console.log("clicktest from app.js", a);
 

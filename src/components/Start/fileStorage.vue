@@ -2,13 +2,15 @@
   <div class="content">
     <div class="input">
       <label for="folderPath">Save destination</label>
-      <input id="folderPath" ref="input" @focus="getFileStorage" placeholder="Add save location">
-      <div class="description">Select the path of where you want to store the screenshots. <button class="btn-none" @click="openDialog">Open location dialog</button>.</div>
+      <input id="folderPath" ref="input" @focus="getFileStorage" placeholder="Add save location" :value="getPath">
+      <div class=" description">Select the path of where you want to store the screenshots. <button class="btn-none" @click="openDialog">Open location dialog</button>.
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import { remote } from "electron";
 const dialog = remote.dialog;
 
@@ -18,6 +20,9 @@ export default {
       hasPath: false,
       path: "",
     };
+  },
+  computed: {
+    ...mapGetters({ getPath: "getPath" }),
   },
   methods: {
     getFileStorage() {

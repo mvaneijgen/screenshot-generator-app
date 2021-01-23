@@ -1,6 +1,6 @@
 const fs = require('fs'); // Write to local file system
 import puppeteer from 'puppeteer-core';
-const { default: fullPageScreenshot } = require("puppeteer-full-page-screenshot");
+// const { default: fullPageScreenshot } = require("puppeteer-full-page-screenshot");
 
 // global.share.ipcMain.on('puppeteer', (event, args) => {
 global.share.ipcMain.on('puppeteer', async (event, args) => {
@@ -67,13 +67,40 @@ global.share.ipcMain.on('puppeteer', async (event, args) => {
       await page.goto(url, {
         waitUntil: "networkidle2",
       });
+      await page.evaluate(() => {
+        // document.body.style.background = '#000';
 
-      // await page.screenshot({
-      //   path: deviceDirectory + imageName,
-      //   type: 'jpeg',
-      //   quality: 60,
-      //   fullPage: true,
-      // });
+
+        const main = document.querySelector('main');
+        main.style.minHeight = "auto";
+
+        // let fixedElements = [...document.body.getElementsByTagName("*")].filter(
+        //   x => getComputedStyle(x, null).getPropertyValue("position") === "fixed"
+        // )
+
+        let fixedElements = [...document.body.querySelectorAll("*")].filter(
+          x => getComputedStyle(x, null).getPropertyValue("min-height") === "100vh"
+        );
+
+        fixedElements.forEach((elm) => {
+          elm.style.minHeight = "auto";
+        })
+        // console.warn(document.querySelector('.wpgdprc-consent-bar'));
+        // document.querySelector('.wpgdprc-consent-bar').style.display = "none";
+
+        // dom.innerHTML = "change to something"
+
+        // let stickyElements = [...document.body.getElementsByTagName("*")].filter(
+        //   x => ['fixed', 'sticky'].includes(getComputedStyle(x, null).getPropertyValue("position"))
+        // );
+        // console.warn(stickyElements);
+      });
+      await page.screenshot({
+        path: deviceDirectory + imageName,
+        type: 'jpeg',
+        quality: 60,
+        fullPage: true,
+      });
 
       // const bodyHandle = await page.$("body");
       // const { width, height } = await bodyHandle.boundingBox();
@@ -87,19 +114,19 @@ global.share.ipcMain.on('puppeteer', async (event, args) => {
       //     height,
       //   },
       // });
-      // await page.evaluate(() => {
-      //   // dom.innerHTML = "change to something"
-      //   let stickyElements = [...document.body.getElementsByTagName("*")].filter(
-      //     x => ['fixed', 'sticky'].includes(getComputedStyle(x, null).getPropertyValue("position"))
-      //   );
-      //   stickyElements.style.display = "none";
+
+      // await page.evaluate(_ => {
+      //   // this will be executed within the page, that was loaded before
+      //   document.body.style.background = '#000';
       // });
 
-      await fullPageScreenshot(page, {
-        path: deviceDirectory + imageName,
-        type: 'jpeg',
-        quality: 60,
-      });
+      // await fullPageScreenshot(page, {
+      //   path: deviceDirectory + imageName,
+      //   type: 'jpeg',
+      //   quality: 1,
+      // });
+
+
     }
   }
   console.warn(`✅  Should have generated ${sitemap.length * devices.length} images.`);
