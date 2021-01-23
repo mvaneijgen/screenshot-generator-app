@@ -2,14 +2,15 @@
   <div class="content">
     <div class="input">
       <label for="filePath">Path to Chrome</label>
-      <input id="filePath" ref="input" :value="getPathChrome" disabled>
+      <input id="filePath" ref="input" :value="getPathChrome" @input="updatePathChrome">
+      <div class=" description">You must have Google Chrome installed. To find your "Executable Path", launch Chrome and browse to "chrome://version/", copy and past the path here.</div>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-const { dialog } = require("electron").remote;
+// const { dialog } = require("electron").remote;
 
 export default {
   data() {
@@ -22,33 +23,18 @@ export default {
     ...mapGetters({ getPathChrome: "getPathChrome" }),
   },
   methods: {
-    getFileStorage() {
-      if (!this.hasPath) {
-        this.openDialog();
-      }
-    },
-    openDialog() {
-      this.hasPath = true; // Prevent dialog from opening again
-      dialog
-        .showOpenDialog({
-          properties: ["openFile"],
-        })
-        .then((result) => {
-          const file = result.filePaths[0];
-          console.warn(file);
-          this.$refs.input.value = file;
-          this.$store.dispatch("SET_PATH", file);
-        });
+    updatePathChrome(e) {
+      this.$store.commit("SET_PATH_CHROME", e.target.value);
     },
   },
 };
 </script>
 
 <style lang="scss">
-@import "@/assets/scss/_variables.scss";
+// @import "@/assets/scss/_variables.scss";
 
-input:disabled {
-  background-color: $brand-dark-lighten;
-  color: $brand-three;
-}
+// input:disabled {
+//   background-color: $brand-dark-lighten;
+//   color: $brand-three;
+// }
 </style>
