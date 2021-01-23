@@ -5,14 +5,15 @@
 </template>
 
 <script>
-// const path = require("path");
-// import { ipcRenderer } from "electron";
+// window.ipcRenderer = ipcRenderer;
 
+import { ipcRenderer } from "electron";
+// window.ipcRenderer = ipcRenderer;
 export default {
   methods: {
     generateScreenshots() {
-      // console.log("test from helloworld component");
-      // ipcRenderer.send("clicktest");
+      console.log("test from helloworld component");
+      ipcRenderer.send("clicktest", "banaan");
       // let child = spawn(
       //   "node",
       //   [
@@ -35,18 +36,18 @@ export default {
     },
   },
   computed: {
-    getSelectedDevices() {
-      return this.$store.getters["getSelectedDevices"];
-    },
-    getSitemap() {
-      return this.$store.getters["getSitemap"];
-    },
-    getPath() {
-      return this.$store.getters["getPath"];
-    },
-    getPathChrome() {
-      return this.$store.getters["getPathChrome"];
-    },
+    // getSelectedDevices() {
+    //   return this.$store.getters["getSelectedDevices"];
+    // },
+    // getSitemap() {
+    //   return this.$store.getters["getSitemap"];
+    // },
+    // getPath() {
+    //   return this.$store.getters["getPath"];
+    // },
+    // getPathChrome() {
+    //   return this.$store.getters["getPathChrome"];
+    // },
   },
 };
 </script>

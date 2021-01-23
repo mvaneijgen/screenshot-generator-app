@@ -5,8 +5,6 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-// import DeviceSingle from "./Devices/DeviceSingle";
 import DeviceSingle from "@/components/Devices/DeviceSingle";
 
 export default {

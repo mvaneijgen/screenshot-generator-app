@@ -9,9 +9,9 @@
 </template>
 
 <script>
-// import { remote } from "electron";
+import { remote } from "electron";
 
-// const dialog = remote.dialog;
+const dialog = remote.dialog;
 // import path from "path";
 
 export default {
@@ -28,19 +28,19 @@ export default {
       }
     },
     openDialog() {
-      // dialog.showOpenDialog(
-      //   {
-      //     properties: ["openDirectory"],
-      //   },
-      //   (folder) => {
-      //     if (folder === undefined) return;
-      //     folder = folder[0];
-      //     this.path = folder;
-      //     this.hasPath = true;
-      //     this.$refs.input.value = folder;
-      //     this.$store.dispatch("SET_PATH", folder);
-      //   },
-      // );
+      dialog.showOpenDialog(
+        {
+          properties: ["openDirectory"],
+        },
+        (folder) => {
+          if (folder === undefined) return;
+          folder = folder[0];
+          this.path = folder;
+          this.hasPath = true;
+          this.$refs.input.value = folder;
+          this.$store.dispatch("SET_PATH", folder);
+        },
+      );
     },
   },
 };
