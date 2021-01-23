@@ -313,10 +313,10 @@ export default new Vuex.Store({
         type: "laptop"
       }
     ],
-    url: "https://www.hetpotentieelpakken.nl/vacatures-sitemap.xml",
-    sitemap: ['https://www.hetpotentieelpakken.nl/vacatures/hpp-projectmanager/', 'https://www.ggca.nl', 'https://www.jointacademymicroport.com'],
+    url: "",
+    sitemap: [],
     loading: false,
-    path: '/Users/mitchelvaneijgen/Downloads/iPhone 4',
+    path: '',
     pathChrome: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   },
   actions: {

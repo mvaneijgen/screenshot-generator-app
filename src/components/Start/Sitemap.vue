@@ -3,8 +3,7 @@
 
     <div class="input">
       <label for="">Sitemap URL</label>
-      <!-- <input id="url" type="url" v-model="url" placeholder="Add sitemap" :value="getPath"> -->
-      <input id="url" type="url" placeholder="Add sitemap" :value="getURL">
+      <input id="url" type="url" v-model="url" placeholder="Add sitemap">
       <div class="description">Example: https://domain.com/link/sitemap.xml</div>
     </div>
     <!-- <div id="or">OR</div>
@@ -20,9 +19,6 @@
 <script>
 import { mapGetters } from "vuex";
 const Sitemapper = require("sitemapper");
-
-// import  from "";
-// import { remote } from "electron";
 
 export default {
   data() {
@@ -54,9 +50,6 @@ export default {
         });
     },
   },
-  // mounted() {
-  //   console.warn(remote.app.getPath());
-  // },
   watch: {
     url() {
       this.getSitemap();
@@ -64,6 +57,7 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
 @import "@/assets/scss/_variables.scss";
 .content {

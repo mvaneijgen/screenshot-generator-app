@@ -11,8 +11,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { remote } from "electron";
-const dialog = remote.dialog;
+const { dialog } = require("electron").remote;
 
 export default {
   data() {
@@ -39,7 +38,6 @@ export default {
         })
         .then((result) => {
           const folder = result.filePaths[0];
-          console.warn(folder);
           this.$refs.input.value = folder;
           this.$store.dispatch("SET_PATH", folder);
         });

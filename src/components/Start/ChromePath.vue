@@ -3,17 +3,13 @@
     <div class="input">
       <label for="filePath">Path to Chrome</label>
       <input id="filePath" ref="input" :value="getPathChrome" disabled>
-      <!-- <input id="filePath" ref="input" @focus="getFileStorage" placeholder="Add save location" :value="getPathChrome"> -->
-      <!-- <div class="description">Select the path where you've installed Google Chrome <button class="btn-none" @click="openDialog">Open location dialog</button>.</div> -->
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-
-import { remote } from "electron";
-const dialog = remote.dialog;
+const { dialog } = require("electron").remote;
 
 export default {
   data() {
