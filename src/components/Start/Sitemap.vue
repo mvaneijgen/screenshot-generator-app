@@ -17,9 +17,9 @@
 </template>
 
 <script>
-// const Sitemapper = require("sitemapper");
+const Sitemapper = require("sitemapper");
 
-// import path from "path";
+// import  from "";
 // import { remote } from "electron";
 
 export default {
@@ -30,32 +30,32 @@ export default {
     };
   },
   methods: {
-    // getSitemap() {
-    //   const sitemap = new Sitemapper({
-    //     url: this.url,
-    //     timeout: 15000, // 15 seconds
-    //   });
-    //   this.$store.dispatch("SET_LOADING", true);
-    //   sitemap
-    //     .fetch()
-    //     .then((data) => {
-    //       this.$store.dispatch("SET_URL", data.url);
-    //       this.$store.dispatch("SET_SITEMAP", data.sites);
-    //       this.$store.dispatch("SET_LOADING", false);
-    //     })
-    //     .catch((error) => {
-    //       this.error = error;
-    //       console.log(error);
-    //     });
-    // },
+    getSitemap() {
+      const sitemap = new Sitemapper({
+        url: this.url,
+        timeout: 15000, // 15 seconds
+      });
+      this.$store.dispatch("SET_LOADING", true);
+      sitemap
+        .fetch()
+        .then((data) => {
+          this.$store.dispatch("SET_URL", data.url);
+          this.$store.dispatch("SET_SITEMAP", data.sites);
+          this.$store.dispatch("SET_LOADING", false);
+        })
+        .catch((error) => {
+          this.error = error;
+          console.log(error);
+        });
+    },
   },
   // mounted() {
   //   console.warn(remote.app.getPath());
   // },
   watch: {
-    // url() {
-    //   this.getSitemap();
-    // },
+    url() {
+      this.getSitemap();
+    },
   },
 };
 </script>
@@ -72,7 +72,7 @@ export default {
 [type="file"]::before {
   content: "Select some files";
   display: inline-block;
-  background: linear-gradient(top, #f9f9f9, #e3e3e3);
+  // background: linear-gradient(top, #f9f9f9, #e3e3e3);
   border: 1px solid #999;
   border-radius: 3px;
   padding: 5px 8px;
@@ -88,6 +88,6 @@ export default {
   border-color: black;
 }
 [type="file"]:active::before {
-  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+  // background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
 </style>

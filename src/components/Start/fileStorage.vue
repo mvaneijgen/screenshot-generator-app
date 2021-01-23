@@ -10,9 +10,7 @@
 
 <script>
 import { remote } from "electron";
-
 const dialog = remote.dialog;
-// import path from "path";
 
 export default {
   data() {
@@ -28,19 +26,18 @@ export default {
       }
     },
     openDialog() {
-      dialog.showOpenDialog(
-        {
+      this.hasPath = true; // Prevent dialog from opening again
+
+      dialog
+        .showOpenDialog({
           properties: ["openDirectory"],
-        },
-        (folder) => {
-          if (folder === undefined) return;
-          folder = folder[0];
-          this.path = folder;
-          this.hasPath = true;
+        })
+        .then((result) => {
+          const folder = result.filePaths[0];
+          console.warn(folder);
           this.$refs.input.value = folder;
           this.$store.dispatch("SET_PATH", folder);
-        },
-      );
+        });
     },
   },
 };

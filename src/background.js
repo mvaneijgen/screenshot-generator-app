@@ -1,9 +1,11 @@
 'use strict'
-
 import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
-import puppeteer from 'puppeteer-core';
+
+const electron = require('electron');
+global.share = { electron, ipcMain };
+
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -80,15 +82,17 @@ if (isDevelopment) {
   }
 }
 
-ipcMain.on("clicktest", async (event, a) => {
-  console.log("clicktest from app.js", a);
+require('./plugins/puppeteer.js');
 
-  const browser = await puppeteer.launch({
-    // headless: false,
-    args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-  });
-  const page = await browser.newPage();
-  await page.goto("https://mvaneijgen.nl");
-  await page.screenshot({ path: "/Applications/banaan-apple1202.png" });
-});
+// ipcMain.on("clicktest", async (event, a) => {
+//   console.log("clicktest from app.js", a);
+
+//   const browser = await puppeteer.launch({
+//     // headless: false,
+//     args: ['--no-sandbox', '--disable-setuid-sandbox'],
+//     executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+//   });
+//   const page = await browser.newPage();
+//   await page.goto("https://mvaneijgen.nl");
+//   await page.screenshot({ path: "/Applications/banaan-apple1202.png" });
+// });

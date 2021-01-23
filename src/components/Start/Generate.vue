@@ -1,6 +1,5 @@
 <template>
-  <!-- <button @click="generateScreenshots" :disabled="getSitemap.length < 1 || getSelectedDevices.length < 1">Generate</button> -->
-  <button @click="generateScreenshots">Generate</button>
+  <button @click="generateScreenshots" :disabled="getSitemap.length < 1 || getSelectedDevices.length < 1 || !getPath">Generate</button>
   <!-- <button @click="generateScreenshots">Generate</button> -->
 </template>
 
@@ -12,8 +11,13 @@ import { ipcRenderer } from "electron";
 export default {
   methods: {
     generateScreenshots() {
-      console.log("test from helloworld component");
-      ipcRenderer.send("clicktest", "banaan");
+      ipcRenderer.send("puppeteer", [
+        JSON.stringify(this.getSitemap),
+        JSON.stringify(this.getSelectedDevices),
+        JSON.stringify(this.getPath),
+        JSON.stringify(this.getPathChrome),
+      ]);
+      // ipcRenderer.send("clicktest", "banaan");
       // let child = spawn(
       //   "node",
       //   [
@@ -36,18 +40,18 @@ export default {
     },
   },
   computed: {
-    // getSelectedDevices() {
-    //   return this.$store.getters["getSelectedDevices"];
-    // },
-    // getSitemap() {
-    //   return this.$store.getters["getSitemap"];
-    // },
-    // getPath() {
-    //   return this.$store.getters["getPath"];
-    // },
-    // getPathChrome() {
-    //   return this.$store.getters["getPathChrome"];
-    // },
+    getSelectedDevices() {
+      return this.$store.getters["getSelectedDevices"];
+    },
+    getSitemap() {
+      return this.$store.getters["getSitemap"];
+    },
+    getPath() {
+      return this.$store.getters["getPath"];
+    },
+    getPathChrome() {
+      return this.$store.getters["getPathChrome"];
+    },
   },
 };
 </script>
