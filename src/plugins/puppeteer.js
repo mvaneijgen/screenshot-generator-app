@@ -6,8 +6,6 @@ global.share.ipcMain.on('puppeteer', async (event, args) => {
   const devices = JSON.parse(args[1]);
   const fileStorage = JSON.parse(args[2]);
   const pathChrome = JSON.parse(args[3]);
-  console.warn('hello');
-
 
   const browser = await puppeteer.launch(
     {
@@ -57,7 +55,14 @@ global.share.ipcMain.on('puppeteer', async (event, args) => {
 
       await page.evaluate(() => {
         const main = document.querySelector('main');
-        main.style.minHeight = "auto";
+        if (main) {
+          main.style.minHeight = "auto";
+        }
+        const header = document.querySelector('section.homepage-slider');
+        if (header) {
+          header.style.marginBottom = 0;
+          header.style.height = '400px';
+        }
       });
 
       await page.screenshot({

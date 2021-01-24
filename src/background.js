@@ -22,6 +22,7 @@ async function createWindow() {
     height: 900,
     titleBarStyle: 'hiddenInset',
     webPreferences: {
+      enableRemoteModule: true,
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION
@@ -85,16 +86,3 @@ if (isDevelopment) {
 }
 
 require('./plugins/puppeteer.js');
-//
-// ipcMain.on("clicktest", async (event, a) => {
-//   console.log("clicktest from app.js", a);
-
-//   const browser = await puppeteer.launch({
-//     // headless: false,
-//     args: ['--no-sandbox', '--disable-setuid-sandbox'],
-//     executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-//   });
-//   const page = await browser.newPage();
-//   await page.goto("https://mvaneijgen.nl");
-//   await page.screenshot({ path: "/Applications/banaan-apple1202.png" });
-// });

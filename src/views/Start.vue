@@ -187,6 +187,8 @@ main {
       position: fixed;
       top: 0;
       left: 0;
+      overflow-y: auto;
+      height: 100%;
     }
     #component-Devices {
       margin-left: $offset;

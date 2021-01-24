@@ -10,7 +10,6 @@
 
 <script>
 import { mapGetters } from "vuex";
-// const { dialog } = require("electron").remote;
 
 export default {
   data() {

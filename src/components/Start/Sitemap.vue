@@ -43,6 +43,7 @@ export default {
           this.$store.dispatch("SET_URL", data.url);
           this.$store.dispatch("SET_SITEMAP", data.sites);
           this.$store.dispatch("SET_LOADING", false);
+          console.warn(this.$store.getters["getSitemap"]);
         })
         .catch((error) => {
           this.error = error;
