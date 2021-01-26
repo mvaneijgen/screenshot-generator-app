@@ -34,15 +34,11 @@ export default {
 var catcher = 0;
 function setMessage(msg) {
   this.log = msg;
+  this.count++;
 }
 
 ipcRenderer.on("process", function (event, args) {
   catcher(args);
-  // console.log(args);
-  // console.log("banaan");
-  // this.log = args;
-  // this.count++;
-  // console.warn(this.count);
 });
 </script>
 <style lang="scss">
