@@ -2,24 +2,29 @@ const fs = require('fs'); // Write to local file system
 import puppeteer from 'puppeteer-core';
 
 global.share.ipcMain.on('puppeteer', async (event, args) => {
+  // Get args and split them up
   const sitemap = JSON.parse(args[0]);
   const devices = JSON.parse(args[1]);
   const fileStorage = JSON.parse(args[2]);
   const pathChrome = JSON.parse(args[3]);
+  const banaan = JSON.parse(args[4]);
 
+  // Envoke Puppeteer
   const browser = await puppeteer.launch(
     {
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
       executablePath: pathChrome
     }
   );
+
   const page = await browser.newPage();
 
+  // Loop through all 💻️ devices in the list
   for (let i = 0, len = devices.length; i < len; i++) {
 
     let device = devices[i];
 
-    // Set device options
+    // Set 💻️ devices options
     await page.setViewport({
       width: device.width,
       height: device.height,
@@ -30,16 +35,22 @@ global.share.ipcMain.on('puppeteer', async (event, args) => {
 
     await page.setUserAgent(device.userAgent);
 
+    // Create 📂 folder structure
     let deviceDirectory = `${fileStorage}/${device.deviceName.replace(/\//g, '-')}/`;
 
     if (!fs.existsSync(deviceDirectory)) {
       fs.mkdirSync(deviceDirectory);
     }
 
+    // Loop through all the URLs in the sitemap
     for (let j = 0, len = sitemap.length; j < len; j++) {
+
       let url = sitemap[j];
 
-      console.log("Generating 🖼  for " + device.deviceName + " " + url);
+      // Log process to the console 
+      let process = "Generating 🖼  for " + device.deviceName + " " + url;
+      console.log(process);
+      event.sender.send('process', process);
 
       // Remove domain name from url and set file name
       let convertURL = url;
@@ -49,21 +60,27 @@ global.share.ipcMain.on('puppeteer', async (event, args) => {
       convertURL = convertURL.join("_");
       let imageName = device.width + "-" + convertURL + ".jpg";
 
+      //------------------------------------------------------//
+      // Take a 📸 screenshot 
+      //------------------------------------------------------//
       await page.goto(url, {
         waitUntil: "networkidle2",
       });
+      //  Inject custom 🎨 CSS to page 
+      await page.evaluate(({banaan}) => {
 
-      await page.evaluate(() => {
-        const main = document.querySelector('main');
-        if (main) {
-          main.style.minHeight = "auto";
+        const head = document.head;
+        const style = document.createElement('style');
+        head.appendChild(style);
+        
+        if (style.styleSheet) {
+          style.styleSheet.cssText = banaan;
+        } else {
+          style.appendChild(document.createTextNode(banaan));
         }
-        const header = document.querySelector('section.homepage-slider');
-        if (header) {
-          header.style.marginBottom = 0;
-          header.style.height = '400px';
-        }
-      });
+
+      },{banaan});
+
 
       await page.screenshot({
         path: deviceDirectory + imageName,
@@ -71,6 +88,8 @@ global.share.ipcMain.on('puppeteer', async (event, args) => {
         quality: 60,
         fullPage: true,
       });
+      // END Take a 📸 screenshot -------------------------------------//
+
 
     }
   }

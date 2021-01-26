@@ -3,7 +3,8 @@
 
     <div class="input">
       <label for="">Sitemap URL</label>
-      <input id="url" type="url" v-model="url" placeholder="Add sitemap">
+      <!-- <input id="url" type="url" v-model="url" placeholder="Add sitemap"> -->
+      <input id="url" type="url" :value="getURL" placeholder="Add sitemap" @input="getSitemap">
       <div class="description">Example: https://domain.com/link/sitemap.xml</div>
     </div>
     <!-- <div id="or">OR</div>
@@ -31,19 +32,21 @@ export default {
     ...mapGetters({ getURL: "getURL" }),
   },
   methods: {
-    getSitemap() {
+    getSitemap(e) {
+      const url = e.target.value;
+
       const sitemap = new Sitemapper({
-        url: this.url,
+        url: url,
         timeout: 15000, // 15 seconds
       });
       this.$store.dispatch("SET_LOADING", true);
+
       sitemap
         .fetch()
         .then((data) => {
           this.$store.dispatch("SET_URL", data.url);
           this.$store.dispatch("SET_SITEMAP", data.sites);
           this.$store.dispatch("SET_LOADING", false);
-          console.warn(this.$store.getters["getSitemap"]);
         })
         .catch((error) => {
           this.error = error;
@@ -51,11 +54,11 @@ export default {
         });
     },
   },
-  watch: {
-    url() {
-      this.getSitemap();
-    },
-  },
+  // watch: {
+  //   url() {
+  //     this.getSitemap();
+  //   },
+  // },
 };
 </script>
 

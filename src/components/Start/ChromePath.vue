@@ -12,12 +12,6 @@
 import { mapGetters } from "vuex";
 
 export default {
-  data() {
-    return {
-      hasPath: false,
-      path: "",
-    };
-  },
   computed: {
     ...mapGetters({ getPathChrome: "getPathChrome" }),
   },

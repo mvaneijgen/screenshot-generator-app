@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import { ipcRenderer } from "electron";
 
 export default {
@@ -13,22 +14,18 @@ export default {
         JSON.stringify(this.getSelectedDevices),
         JSON.stringify(this.getPath),
         JSON.stringify(this.getPathChrome),
+        JSON.stringify(this.getCustomCSS),
       ]);
     },
   },
   computed: {
-    getSelectedDevices() {
-      return this.$store.getters["getSelectedDevices"];
-    },
-    getSitemap() {
-      return this.$store.getters["getSitemap"];
-    },
-    getPath() {
-      return this.$store.getters["getPath"];
-    },
-    getPathChrome() {
-      return this.$store.getters["getPathChrome"];
-    },
+    ...mapGetters({
+      getSelectedDevices: "getSelectedDevices",
+      getSitemap: "getSitemap",
+      getPath: "getPath",
+      getPathChrome: "getPathChrome",
+      getCustomCSS: "getCustomCSS",
+    }),
   },
 };
 </script>

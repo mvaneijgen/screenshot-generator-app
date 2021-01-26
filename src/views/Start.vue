@@ -1,6 +1,7 @@
 <template>
   <main>
     <Sidebar />
+    <Progress />
     <Devices />
   </main>
 </template>
@@ -8,17 +9,46 @@
 <script>
 import Sidebar from "@/components/Start/Sidebar";
 import Devices from "@/components/Devices/Devices";
+import Progress from "@/components/Progress";
+
+const homedir = require("os").homedir();
 
 export default {
   name: "Start",
   components: {
     Devices,
     Sidebar,
+    Progress,
   },
-  methods: {
-    // open(link) {
-    //   this.$electron.shell.openExternal(link);
-    // },
+  mounted() {
+    if (process.env.NODE_ENV === "development") {
+      this.$store.commit(
+        "SET_URL",
+        "https://decodedbags.com/sitemap_blogs_1.xml",
+      );
+    }
+    //------------------------------------------------------//
+    // ⌘ macOS
+    //------------------------------------------------------//
+    if (process.platform === "darwin") {
+      this.$store.commit(
+        "SET_PATH_CHROME",
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+      );
+      this.$store.dispatch("SET_PATH", `${homedir}/Downloads/`);
+    }
+    // END ⌘ macOS -------------------------------------//
+    //------------------------------------------------------//
+    // 🖼️ Windows
+    //------------------------------------------------------//
+    if (process.platform === "win32") {
+      this.$store.commit(
+        "SET_PATH_CHROME",
+        "%ProgramFiles(x86)%GoogleChromeApplicationchrome.exe",
+      );
+      this.$store.dispatch("SET_PATH", `${homedir}/Downloads/`);
+    }
+    // END 🖼️ Windows -------------------------------------//
   },
 };
 </script>
@@ -214,6 +244,7 @@ button,
     transform: scale(1.05);
   }
 }
+textarea,
 select,
 input {
   width: 100%;

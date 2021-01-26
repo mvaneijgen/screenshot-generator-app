@@ -18,11 +18,11 @@
         <h3>Fetching your sitemap</h3>
       </div>
       <div id="resutls" v-else-if="getSitemap.length >= 1 && getSelectedDevices.length >= 1" key="result">
-        <p>Found {{getSitemap.length}} pages in sitemap</p>
-        <h3 v-html="getURL"></h3>
-        <p> This wil result in</p>
-        <h3>📱 {{getSelectedDevices.length}} <span> devices</span> x 📃 {{getSitemap.length}} <span>pages</span></h3>
+        <!-- <p>Found {{getSitemap.length}} pages in sitemap</p>
+        <h3 v-html="getURL"></h3> -->
         <p>Going to generate</p>
+        <h3>📱 {{getSelectedDevices.length}} <span> devices</span> x 📃 {{getSitemap.length}} <span>pages</span></h3>
+        <p>This will result in</p>
         <h3>🖼 {{calcScreenshots}} <span>screenshots</span></h3>
       </div>
     </transition>

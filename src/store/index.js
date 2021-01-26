@@ -317,7 +317,9 @@ export default new Vuex.Store({
     sitemap: [],
     loading: false,
     path: '',
-    pathChrome: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    pathChrome: '',
+    customCSS: '* {background: yellow; }',
+    generating: false,
   },
   actions: {
     RESET_SELECTED_DEVICES({ commit }) {
@@ -343,6 +345,9 @@ export default new Vuex.Store({
     },
     SET_PATH_CHROME({ commit }, payload) {
       commit('SET_PATH_CHROME', payload);
+    },
+    SET_CUSTOM_CSS({ commit }, payload) {
+      commit('SET_CUSTOM_CSS', payload);
     },
   },
   mutations: {
@@ -374,6 +379,9 @@ export default new Vuex.Store({
     SET_PATH_CHROME(state, payload) {
       state.pathChrome = payload;
     },
+    SET_CUSTOM_CSS(state, payload) {
+      state.customCSS = payload;
+    },
   },
   getters: {
     getAllDevices: state => {
@@ -388,6 +396,9 @@ export default new Vuex.Store({
     getSitemap: state => {
       return state.sitemap;
     },
+    getSitemapLenght: state => {
+      return state.sitemap.length;
+    },
     getURL: state => {
       return state.url;
     },
@@ -399,6 +410,9 @@ export default new Vuex.Store({
     },
     getPathChrome: state => {
       return state.pathChrome;
+    },
+    getCustomCSS: state => {
+      return state.customCSS;
     },
   }
 })

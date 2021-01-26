@@ -8,6 +8,7 @@
     <FileStorage />
     <SidebarResult />
     <ChromePath />
+    <CustomCSS />
     <Generate />
   </aside>
 </template>
@@ -18,6 +19,7 @@ import Generate from "@/components/Start/Generate";
 import FileStorage from "@/components/Start/FileStorage";
 import ChromePath from "@/components/Start/ChromePath";
 import SidebarResult from "@/components/Start/SidebarResult";
+import CustomCSS from "@/components/Start/CustomCSS";
 
 export default {
   components: {
@@ -26,6 +28,7 @@ export default {
     FileStorage,
     ChromePath,
     SidebarResult,
+    CustomCSS,
   },
 };
 </script>
