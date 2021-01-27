@@ -1,15 +1,17 @@
 <template>
-  <main>
+  <div>
     <Sidebar />
-    <Progress />
-    <Devices />
-  </main>
+    <main>
+      <Progress />
+      <Devices />
+    </main>
+  </div>
 </template>
 
 <script>
 import Sidebar from "@/components/Start/Sidebar";
 import Devices from "@/components/Devices/Devices";
-import Progress from "@/components/Progress";
+import Progress from "@/components/Main/Progress";
 
 const homedir = require("os").homedir();
 
@@ -24,7 +26,7 @@ export default {
     if (process.env.NODE_ENV === "development") {
       this.$store.commit(
         "SET_URL",
-        "https://decodedbags.com/sitemap_blogs_1.xml",
+        "https://decodedbags.com/sitemap_pages_1.xml",
       );
     }
     //------------------------------------------------------//
@@ -204,25 +206,24 @@ a {
 }
 
 $offset: 400px;
-main {
+aside {
+  padding: 40px;
+  background-color: $brand-dark;
+  color: #fff;
+}
+@include media-breakpoint-up(lg) {
   aside {
-    padding: 40px;
-    background-color: $brand-dark;
-    color: #fff;
+    width: $offset;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    height: 100%;
   }
-  @include media-breakpoint-up(lg) {
-    aside {
-      width: $offset;
-      min-height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-      overflow-y: auto;
-      height: 100%;
-    }
-    #component-Devices {
-      margin-left: $offset;
-    }
+  main {
+    // #component-Devices {
+    margin-left: $offset;
   }
 }
 [type="button"],

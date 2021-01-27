@@ -13,7 +13,6 @@
       <input id="file" type="file">
     </div> -->
     <!-- <input type="submit" value="check"> -->
-
   </div>
 </template>
 
@@ -54,11 +53,6 @@ export default {
         });
     },
   },
-  // watch: {
-  //   url() {
-  //     this.getSitemap();
-  //   },
-  // },
 };
 </script>
 
