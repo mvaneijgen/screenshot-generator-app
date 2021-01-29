@@ -9,6 +9,10 @@ import { ipcRenderer } from "electron";
 export default {
   methods: {
     generateScreenshots() {
+      this.$store.commit("SET_STATE", {
+        key: "generating",
+        value: true,
+      });
       ipcRenderer.send("puppeteer", [
         JSON.stringify(this.getSitemap),
         JSON.stringify(this.getSelectedDevices),

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section :disabled="">
+    <section :disabled="getGenerating">
       <Sidebar />
       <AdvancedSidebar v-if="getState" />
       <div class="tabs">
@@ -8,8 +8,8 @@
       </div>
     </section>
     <main>
-      <Progress />
-      <Devices />
+      <Progress v-if="getGenerating" />
+      <Devices v-if="!getGenerating" />
     </main>
   </div>
 </template>
@@ -36,6 +36,9 @@ export default {
     };
   },
   computed: {
+    getGenerating() {
+      return this.$store.getters.getState("generating");
+    },
     getState: {
       get() {
         return this.$store.getters.getState(this.key);
@@ -59,6 +62,9 @@ export default {
         "SET_URL",
         "https://decodedbags.com/sitemap_pages_1.xml",
       );
+      this.$store.commit("SET_SITEMAP", [
+        "https://decodedbags.com/pages/about",
+      ]);
     }
     //------------------------------------------------------//
     // ⌘ macOS
@@ -385,10 +391,6 @@ section {
   button {
     background-color: $brand-one;
     color: $brand-light;
-    border-radius: 5px 5px 0 0;
-    @include media-breakpoint-up(lg) {
-      border-radius: 0 0 5px 5px;
-    }
     width: auto;
     padding: 10px;
     font-size: 16px;

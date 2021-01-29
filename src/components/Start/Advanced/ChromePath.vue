@@ -3,7 +3,7 @@
     <div class="input">
       <label for="filePath">Path to Chrome</label>
       <input id="filePath" ref="input" :value="getPathChrome" @input="updatePathChrome">
-      <div class=" description">You must have Google Chrome installed. To find your "Executable Path", launch Chrome and browse to "chrome://version/", copy and past the path here.</div>
+      <div class=" description">You must have Google Chrome installed. To find your "Executable Path", launch Chrome and browse to "<strong>chrome://version/</strong>", copy and past the path here.</div>
     </div>
   </div>
 </template>

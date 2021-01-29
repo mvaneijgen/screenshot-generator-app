@@ -50,7 +50,10 @@ global.share.ipcMain.on('puppeteer', async (event, args) => {
       // Log process to the console 
       let process = "Generating 🖼  for " + device.deviceName + " " + url;
       console.log(process);
-      event.sender.send('process', [device.deviceName, url]);
+      event.sender.send('process', [
+        device.deviceName,
+        url
+      ]);
 
       // Remove domain name from url and set file name
       let convertURL = url;

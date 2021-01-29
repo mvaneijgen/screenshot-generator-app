@@ -1,12 +1,13 @@
 <template>
   <div class="progress">
-    <h1>Generating...</h1>
-    <div class="counter">{{count}}/{{getSitemapLenght}}</div>
-    <pre>{{log}}</pre>
-    <pre>
-      <span v-for="(item, index) in log" :key="index">{{item}}</span>
-    </pre>
-
+    <div class="inner">
+      <h1>Taking screenshots...</h1>
+      <div class="counter">{{count}}/{{getSitemapLenght}} pages</div>
+      <h3>Device: {{device}}</h3>
+      <transition-group name="fade" tag="ul">
+        <li v-for="(item) in log" :key="item.id">{{item.url}}</li>
+      </transition-group>
+    </div>
   </div>
 </template>
 
@@ -19,6 +20,7 @@ export default {
   data() {
     return {
       count: 0,
+      device: "",
       log: [],
     };
   },
@@ -36,9 +38,10 @@ export default {
 //------------------------------------------------------//
 let catcher = 0;
 
-function setMessage(msg) {
-  this.log.push(msg);
+function setMessage(args) {
   this.count++;
+  this.device = args[0];
+  this.log.unshift({ url: args[1], id: Date.now() });
 }
 
 ipcRenderer.on("process", function (event, args) {
@@ -46,17 +49,29 @@ ipcRenderer.on("process", function (event, args) {
 });
 // END Logic to get data from ipCRenderer  -------------------------------------//
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/scss/_variables.scss";
 
 .progress {
-  padding: $base-margin * 2;
-  margin-top: 100px;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  background: $brand-one;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  > .inner {
+    padding: $base-margin * 2;
+    margin-top: 100px;
+    width: 40vmax;
+    height: 40vmax;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    background: $brand-one;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 }
 h1 {
   font-size: 20px;
@@ -65,12 +80,33 @@ h1 {
   font-size: 30px;
   font-weight: 700;
 }
-pre {
-  height: 6em;
+ul {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column-reverse;
   overflow: hidden;
-  span {
-    display: block;
-    opacity: 0.6;
+  height: 4em;
+  font-size: 14px;
+  li {
+    list-style: none;
+    opacity: 0;
+    &:nth-child(1) {
+      opacity: 1;
+    }
+    &:nth-child(2) {
+      opacity: 0.6;
+    }
+    &:nth-child(3) {
+      opacity: 0.3;
+    }
   }
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

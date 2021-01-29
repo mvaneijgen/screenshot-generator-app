@@ -41,7 +41,7 @@ export default new Vuex.Store({
         type: "phone"
       },
       {
-        deviceName: "iPhone 6/7/8",
+        deviceName: "iPhone 6/7/8/SE",
         width: 375,
         height: 667,
         deviceScaleFactor: 2,
@@ -62,17 +62,17 @@ export default new Vuex.Store({
         mobile: true,
         type: "phone"
       },
-      {
-        deviceName: "iPhone SE 2020",
-        width: 375,
-        height: 667,
-        deviceScaleFactor: 2,
-        userAgent:
-          "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239e Safari/602.1",
-        touch: true,
-        mobile: true,
-        type: "phone"
-      },
+      // {
+      //   deviceName: "iPhone SE 2020",
+      //   width: 375,
+      //   height: 667,
+      //   deviceScaleFactor: 2,
+      //   userAgent:
+      //     "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239e Safari/602.1",
+      //   touch: true,
+      //   mobile: true,
+      //   type: "phone"
+      // },
       {
         deviceName: "iPhone X/11",
         width: 375,
