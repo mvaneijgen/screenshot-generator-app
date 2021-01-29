@@ -7,7 +7,7 @@ global.share.ipcMain.on('puppeteer', async (event, args) => {
   const devices = JSON.parse(args[1]);
   const fileStorage = JSON.parse(args[2]);
   const pathChrome = JSON.parse(args[3]);
-  const banaan = JSON.parse(args[4]);
+  const customCSS = JSON.parse(args[4]);
 
   // Envoke Puppeteer
   const browser = await puppeteer.launch(
@@ -50,7 +50,7 @@ global.share.ipcMain.on('puppeteer', async (event, args) => {
       // Log process to the console 
       let process = "Generating 🖼  for " + device.deviceName + " " + url;
       console.log(process);
-      event.sender.send('process', process);
+      event.sender.send('process', [device.deviceName, url]);
 
       // Remove domain name from url and set file name
       let convertURL = url;
@@ -67,19 +67,19 @@ global.share.ipcMain.on('puppeteer', async (event, args) => {
         waitUntil: "networkidle2",
       });
       //  Inject custom 🎨 CSS to page 
-      await page.evaluate(({banaan}) => {
+      await page.evaluate(({ customCSS }) => {
 
         const head = document.head;
         const style = document.createElement('style');
         head.appendChild(style);
-        
+
         if (style.styleSheet) {
-          style.styleSheet.cssText = banaan;
+          style.styleSheet.cssText = customCSS;
         } else {
-          style.appendChild(document.createTextNode(banaan));
+          style.appendChild(document.createTextNode(customCSS));
         }
 
-      },{banaan});
+      }, { customCSS });
 
 
       await page.screenshot({

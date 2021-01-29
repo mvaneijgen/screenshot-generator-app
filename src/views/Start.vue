@@ -1,6 +1,12 @@
 <template>
   <div>
-    <Sidebar />
+    <section :disabled="">
+      <Sidebar />
+      <AdvancedSidebar v-if="getState" />
+      <div class="tabs">
+        <button @click="toggleAdvanced" :class="{active: getState}">Advanced</button>
+      </div>
+    </section>
     <main>
       <Progress />
       <Devices />
@@ -10,6 +16,7 @@
 
 <script>
 import Sidebar from "@/components/Start/Sidebar";
+import AdvancedSidebar from "@/components/Start/Advanced/Sidebar";
 import Devices from "@/components/Devices/Devices";
 import Progress from "@/components/Main/Progress";
 
@@ -18,9 +25,33 @@ const homedir = require("os").homedir();
 export default {
   name: "Start",
   components: {
-    Devices,
     Sidebar,
+    AdvancedSidebar,
+    Devices,
     Progress,
+  },
+  data() {
+    return {
+      key: "advanced",
+    };
+  },
+  computed: {
+    getState: {
+      get() {
+        return this.$store.getters.getState(this.key);
+      },
+      set(val) {
+        return val;
+      },
+    },
+  },
+  methods: {
+    toggleAdvanced() {
+      this.$store.commit("SET_STATE", {
+        key: this.key,
+        value: (this.getState = !this.getState),
+      });
+    },
   },
   mounted() {
     if (process.env.NODE_ENV === "development") {
@@ -205,27 +236,6 @@ a {
   color: $brand-light;
 }
 
-$offset: 400px;
-aside {
-  padding: 40px;
-  background-color: $brand-dark;
-  color: #fff;
-}
-@include media-breakpoint-up(lg) {
-  aside {
-    width: $offset;
-    min-height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    overflow-y: auto;
-    height: 100%;
-  }
-  main {
-    // #component-Devices {
-    margin-left: $offset;
-  }
-}
 [type="button"],
 [type="submit"],
 button,
@@ -252,6 +262,9 @@ input {
   padding: 7px 0 7px 10px;
   font-size: 16px;
   line-height: 1em;
+}
+[type="range"] {
+  padding: 0;
 }
 [type="button"],
 [type="submit"],
@@ -315,7 +328,77 @@ button,
   }
 }
 .content {
-  margin-top: 40px;
+  // margin-top: 40px;
   width: 100%;
+}
+$offset: 400px;
+aside {
+  padding: 40px;
+  background-color: $brand-dark;
+  color: #fff;
+  z-index: 1000;
+}
+aside {
+  width: 100%;
+  @include media-breakpoint-up(lg) {
+    width: $offset;
+  }
+  overflow-y: auto;
+  height: 100%;
+}
+main {
+  // #component-Devices {
+  @include media-breakpoint-up(lg) {
+    margin-left: $offset;
+  }
+}
+section {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  @include media-breakpoint-down(sm) {
+    flex-direction: column;
+  }
+  @include media-breakpoint-up(lg) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+  }
+}
+
+.tabs {
+  position: absolute;
+  top: 50px;
+  right: -30px;
+  @include media-breakpoint-up(lg) {
+    top: 50px;
+    right: 1px;
+    transform-origin: top right;
+  }
+  transform: rotate(-90deg);
+  z-index: 1100;
+  display: flex;
+  flex-direction: row-reverse;
+
+  button {
+    background-color: $brand-one;
+    color: $brand-light;
+    border-radius: 5px 5px 0 0;
+    @include media-breakpoint-up(lg) {
+      border-radius: 0 0 5px 5px;
+    }
+    width: auto;
+    padding: 10px;
+    font-size: 16px;
+    height: 35px;
+    &.active,
+    &:hover {
+      transform: scale(1);
+      background-color: $brand-dark-lighten;
+      color: $brand-three;
+    }
+  }
 }
 </style>

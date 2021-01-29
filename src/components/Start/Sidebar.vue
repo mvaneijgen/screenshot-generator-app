@@ -4,11 +4,12 @@
       <span>Screenshot</span>
       <span>Generator</span>
     </div>
+    <!-- <div class="tabs">
+      <button @click="toggleAdvanced">Advanced</button>
+    </div> -->
     <Sitemap />
     <FileStorage />
     <SidebarResult />
-    <ChromePath />
-    <CustomCSS />
     <Generate />
   </aside>
 </template>
@@ -17,31 +18,52 @@
 import Sitemap from "@/components/Start/Sitemap";
 import Generate from "@/components/Start/Generate";
 import FileStorage from "@/components/Start/FileStorage";
-import ChromePath from "@/components/Start/ChromePath";
 import SidebarResult from "@/components/Start/SidebarResult";
-import CustomCSS from "@/components/Start/CustomCSS";
 
 export default {
   components: {
     Sitemap,
     Generate,
     FileStorage,
-    ChromePath,
     SidebarResult,
-    CustomCSS,
   },
+  // data() {
+  //   return {
+  //     key: "advanced",
+  //   };
+  // },
+  // computed: {
+  //   getState: {
+  //     get() {
+  //       return this.$store.getters.getState(this.key);
+  //     },
+  //     set(val) {
+  //       return val;
+  //     },
+  //   },
+  // },
+  // methods: {
+  //   toggleAdvanced() {
+  //     this.$store.commit("SET_STATE", {
+  //       key: this.key,
+  //       value: (this.getState = !this.getState),
+  //     });
+  //   },
+  // },
 };
 </script>
 <style lang="scss" scoped>
 @import "@/assets/scss/_variables.scss";
 aside {
   -webkit-app-region: drag;
+  // position: relative;
   // display: flex;
   // flex-direction: column;
   // justify-content: space-between;
   // align-items: flex-start;
 }
 #logo {
+  margin-bottom: 40px;
   span {
     font-size: 60px;
     color: $brand-three;
@@ -63,10 +85,10 @@ aside {
       margin-left: 10px;
     }
   }
-  i {
-    transform: translateY(1px);
-    display: inline-block;
-    font-style: normal;
-  }
+  // i {
+  //   transform: translateY(1px);
+  //   display: inline-block;
+  //   font-style: normal;
+  // }
 }
 </style>

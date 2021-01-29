@@ -1,18 +1,10 @@
 <template>
   <div class="content">
-
     <div class="input">
       <label for="">Sitemap URL</label>
-      <!-- <input id="url" type="url" v-model="url" placeholder="Add sitemap"> -->
       <input id="url" type="url" :value="getURL" placeholder="Add sitemap" @input="getSitemap">
       <div class="description">Example: https://domain.com/link/sitemap.xml</div>
     </div>
-    <!-- <div id="or">OR</div>
-    <div class="input">
-      <label for="file">Upload .xml</label>
-      <input id="file" type="file">
-    </div> -->
-    <!-- <input type="submit" value="check"> -->
   </div>
 </template>
 
@@ -58,11 +50,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/assets/scss/_variables.scss";
-.content {
-  margin-top: 40px;
-  width: 100%;
-}
-
 [type="file"]::-webkit-file-upload-button {
   visibility: hidden;
 }

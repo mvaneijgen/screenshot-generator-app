@@ -320,6 +320,9 @@ export default new Vuex.Store({
     pathChrome: '',
     customCSS: '* {background: yellow; }',
     generating: false,
+    amount: 100,
+    quality: 10,
+    advanced: false,
   },
   actions: {
     RESET_SELECTED_DEVICES({ commit }) {
@@ -349,8 +352,15 @@ export default new Vuex.Store({
     SET_CUSTOM_CSS({ commit }, payload) {
       commit('SET_CUSTOM_CSS', payload);
     },
+    SET_STATE({ commit }, payload) {
+      commit('SET_STATE', payload);
+      console.warn(payload);
+    },
   },
   mutations: {
+    SET_STATE(state, payload) {
+      state[payload['key']] = payload['value'];
+    },
     RESET_SELECTED_DEVICES(state) {
       state.selectedDevices = [];
     },
@@ -397,7 +407,8 @@ export default new Vuex.Store({
       return state.sitemap;
     },
     getSitemapLenght: state => {
-      return state.sitemap.length;
+      // return state.sitemap.length;
+      return Math.round((state.sitemap.length / 100) * state.amount);
     },
     getURL: state => {
       return state.url;
@@ -414,5 +425,8 @@ export default new Vuex.Store({
     getCustomCSS: state => {
       return state.customCSS;
     },
+    getState: (state) => (payload) => {
+      return state[payload];
+    }
   }
 })
