@@ -2,7 +2,7 @@
   <div class="progress">
     <div class="inner">
       <h1>Taking screenshots...</h1>
-      <div class="counter">{{count}}/{{getSitemapLenght}} pages</div>
+      <div class="counter">{{count}}/{{getSitemapLength}} pages</div>
       <h3>Device: {{device}}</h3>
       <transition-group name="fade" tag="ul">
         <li v-for="(item) in log" :key="item.id">{{item.url}}</li>
@@ -25,7 +25,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters({ getSitemapLenght: "getSitemapLenght" }),
+    ...mapGetters({ getSitemapLength: "getSitemapLength" }),
   },
   methods: {},
   mounted() {

@@ -3,7 +3,7 @@
     <div class="input">
       <label for="quality">Image quality</label>
       <input type="range" id="quality" name="quality" :value="getState" min="0" max="100" @input="setState">
-      <div class=" description">Taking <strong>{{ getSitemapLenght * getSelectedDevices.length}}</strong> screenshots will take up arround <strong>~{{getTotalMB}}MB</strong> of storage.</div>
+      <div class=" description">Taking <strong>{{ getSitemapLength * getSelectedDevices.length}}</strong> screenshots will take up arround <strong>~{{getTotalMB}}MB</strong> of storage.</div>
     </div>
   </div>
 </template>
@@ -19,7 +19,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getSitemapLenght: "getSitemapLenght",
+      getSitemapLength: "getSitemapLength",
       getSelectedDevices: "getSelectedDevices",
       getTotalMB: "getTotalMB",
     }),

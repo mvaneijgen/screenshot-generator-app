@@ -403,4 +403,27 @@ section {
     }
   }
 }
+.custom-leave,
+.custom-leave-to {
+  // opacity: 0;
+  transform: scale(0);
+}
+/* Item NOT in view starts in this postion */
+.custom-enter {
+  // opacity: 0;
+  transform: scale(0);
+}
+/* Item NOT goes to this postion */
+.custom-enter-to {
+  // opacity: 1;
+  transform: scale(1);
+}
+/* Properties active during the whole duration */
+.custom-enter-active,
+.custom-leave-active {
+  transition: transform, opacity;
+  transition-duration: 600ms;
+  transition-timing-function: ease;
+  // transition-delay: 300ms;
+}
 </style>

@@ -35,13 +35,13 @@ import { mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters({
-      getSitemapLenght: "getSitemapLenght",
+      getSitemapLength: "getSitemapLength",
       getSelectedDevices: "getSelectedDevices",
       getTotalMB: "getTotalMB",
     }),
-    getSelectedDevices() {
-      return this.$store.getters["getSelectedDevices"];
-    },
+    // getSelectedDevices() {
+    //   return this.$store.getters["getSelectedDevices"];
+    // },
     getLoading() {
       return this.$store.getters["getLoading"];
     },
@@ -63,14 +63,7 @@ export default {
         .join("/<br>");
     },
     calcScreenshots() {
-      return this.getSelectedDevices.length * this.getSitemap.length;
-    },
-    total() {
-      return (
-        this.getSitemapLenght *
-        this.getSelectedDevices.length *
-        (0.01 * this.getQuality)
-      ).toFixed(1);
+      return this.getSelectedDevices.length * this.getSitemapLength;
     },
   },
 };
@@ -91,27 +84,4 @@ export default {
   }
 }
 /* Item in view leave to this postion */
-.custom-leave,
-.custom-leave-to {
-  // opacity: 0;
-  transform: scale(0);
-}
-/* Item NOT in view starts in this postion */
-.custom-enter {
-  // opacity: 0;
-  transform: scale(0);
-}
-/* Item NOT goes to this postion */
-.custom-enter-to {
-  // opacity: 1;
-  transform: scale(1);
-}
-/* Properties active during the whole duration */
-.custom-enter-active,
-.custom-leave-active {
-  transition: transform, opacity;
-  transition-duration: 600ms;
-  transition-timing-function: ease;
-  // transition-delay: 300ms;
-}
 </style>

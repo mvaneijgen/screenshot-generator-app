@@ -354,7 +354,6 @@ export default new Vuex.Store({
     },
     SET_STATE({ commit }, payload) {
       commit('SET_STATE', payload);
-      console.warn(payload);
     },
   },
   mutations: {
@@ -406,7 +405,7 @@ export default new Vuex.Store({
     getSitemap: state => {
       return state.sitemap;
     },
-    getSitemapLenght: state => {
+    getSitemapLength: state => {
       // return state.sitemap.length;
       return Math.round((state.sitemap.length / 100) * state.amount);
     },
@@ -428,8 +427,8 @@ export default new Vuex.Store({
     getState: (state) => (payload) => {
       return state[payload];
     },
-    getTotalMB: state => {
-      return ((state.getSitemapLenght * state.getSelectedDevices.length) * (0.01 * state.quality)).toFixed(1);
+    getTotalMB: (state, getters) => {
+      return ((getters.getSitemapLength * getters.getSelectedDevices.length) * (0.001 * state.quality)).toFixed(1);
     },
   }
 })
