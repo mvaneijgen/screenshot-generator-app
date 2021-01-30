@@ -52,7 +52,8 @@ global.share.ipcMain.on('puppeteer', async (event, args) => {
       console.log(process);
       event.sender.send('process', [
         device.deviceName,
-        url
+        url,
+        false
       ]);
 
       // Remove domain name from url and set file name
@@ -97,7 +98,12 @@ global.share.ipcMain.on('puppeteer', async (event, args) => {
     }
   }
   console.warn(`✅  Should have generated ${sitemap.length * devices.length} images.`);
-
+  event.sender.send('process', [
+    'device.deviceName',
+    'url',
+    true
+  ]);
+  // event.sender.send('done', true);
   await browser.close();
 
 })

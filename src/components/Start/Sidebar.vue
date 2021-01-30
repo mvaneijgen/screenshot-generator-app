@@ -76,7 +76,6 @@ fieldset {
   width: 100%;
 }
 [disabled="disabled"] {
-  background-color: $brand-dark-lighten;
   color: rgba($brand-light, 0.3);
   cursor: not-allowed;
 }

@@ -1,13 +1,20 @@
 <template>
   <div class="progress">
-    <div class="inner">
-      <h1>Taking screenshots...</h1>
-      <div class="counter">{{count}}/{{getSitemapLength}} pages</div>
-      <h3>Device: {{device}}</h3>
-      <transition-group name="fade" tag="ul">
-        <li v-for="(item) in log" :key="item.id">{{item.url}}</li>
-      </transition-group>
-    </div>
+    <transition name="custom" mode="out-in">
+      <div class="inner" v-if="!done" key="generating">
+        <h1>Taking screenshots...</h1>
+        <div class="counter">{{count}}/{{getSitemapLength * getSelectedDevices.length}} pages</div>
+        <h3>Device: {{device}}</h3>
+        <transition-group name="custom" tag="ul">
+          <li v-for="(item) in log" :key="item.id">{{item.url}}</li>
+        </transition-group>
+        {{'status ' + done}}
+      </div>
+      <div class="inner" v-if="done" key="done">
+        ✅
+        <button>Close</button>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -22,14 +29,19 @@ export default {
       count: 0,
       device: "",
       log: [],
+      done: false,
     };
   },
   computed: {
-    ...mapGetters({ getSitemapLength: "getSitemapLength" }),
+    ...mapGetters({
+      getSitemapLength: "getSitemapLength",
+      getSelectedDevices: "getSelectedDevices",
+    }),
   },
   methods: {},
   mounted() {
     catcher = setMessage.bind(this);
+    // catcher2 = setMessage.bind(this);
   },
 };
 
@@ -42,11 +54,15 @@ function setMessage(args) {
   this.count++;
   this.device = args[0];
   this.log.unshift({ url: args[1], id: Date.now() });
+  this.done = args[2];
 }
 
 ipcRenderer.on("process", function (event, args) {
   catcher(args);
 });
+// ipcRenderer.on("process", function (event, args) {
+//   catcher2(args);
+// });
 // END Logic to get data from ipCRenderer  -------------------------------------//
 </script>
 <style lang="scss" scoped>
