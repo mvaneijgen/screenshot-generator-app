@@ -321,7 +321,7 @@ export default new Vuex.Store({
     customCSS: '* {background: yellow; }',
     generating: false,
     amount: 100,
-    quality: 10,
+    quality: 60,
     advanced: false,
   },
   actions: {
@@ -427,6 +427,9 @@ export default new Vuex.Store({
     },
     getState: (state) => (payload) => {
       return state[payload];
-    }
+    },
+    getTotalMB: state => {
+      return ((state.getSitemapLenght * state.getSelectedDevices.length) * (0.01 * state.quality)).toFixed(1);
+    },
   }
 })

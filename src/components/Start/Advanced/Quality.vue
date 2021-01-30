@@ -3,7 +3,7 @@
     <div class="input">
       <label for="quality">Image quality</label>
       <input type="range" id="quality" name="quality" :value="getState" min="0" max="100" @input="setState">
-      <div class=" description">Taking <strong>{{ getSitemapLenght * getSelectedDevices.length}}</strong> screenshots will take up arround <strong>~{{total}}MB</strong> of storage.</div>
+      <div class=" description">Taking <strong>{{ getSitemapLenght * getSelectedDevices.length}}</strong> screenshots will take up arround <strong>~{{getTotalMB}}MB</strong> of storage.</div>
     </div>
   </div>
 </template>
@@ -21,13 +21,8 @@ export default {
     ...mapGetters({
       getSitemapLenght: "getSitemapLenght",
       getSelectedDevices: "getSelectedDevices",
+      getTotalMB: "getTotalMB",
     }),
-    getState() {
-      return this.$store.getters.getState(this.key);
-    },
-    total() {
-      return Math.round(this.getSitemapLenght * (0.01 * this.getState));
-    },
   },
   methods: {
     setState(e) {

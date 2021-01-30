@@ -18,12 +18,10 @@
         <h3>Fetching your sitemap</h3>
       </div>
       <div id="resutls" v-else-if="getSitemap.length >= 1 && getSelectedDevices.length >= 1" key="result">
-        <!-- <p>Found {{getSitemap.length}} pages in sitemap</p>
-        <h3 v-html="getURL"></h3> -->
         <p>Going to generate</p>
         <h3>📱 {{getSelectedDevices.length}} <span> devices</span> x 📃 {{getSitemap.length}} <span>pages</span></h3>
         <p>This will result in</p>
-        <h3>🖼 {{calcScreenshots}} <span>screenshots</span></h3>
+        <h3>🖼 {{calcScreenshots}} <span>screenshots</span> (~{{getTotalMB}}MB)</h3>
       </div>
     </transition>
 
@@ -32,8 +30,15 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   computed: {
+    ...mapGetters({
+      getSitemapLenght: "getSitemapLenght",
+      getSelectedDevices: "getSelectedDevices",
+      getTotalMB: "getTotalMB",
+    }),
     getSelectedDevices() {
       return this.$store.getters["getSelectedDevices"];
     },
@@ -46,6 +51,9 @@ export default {
     getSitemap() {
       return this.$store.getters["getSitemap"];
     },
+    getQuality() {
+      return this.$store.getters.getState("quality");
+    },
     getURL() {
       return this.$store.getters["getURL"]
         .replace("https://", "")
@@ -56,6 +64,13 @@ export default {
     },
     calcScreenshots() {
       return this.getSelectedDevices.length * this.getSitemap.length;
+    },
+    total() {
+      return (
+        this.getSitemapLenght *
+        this.getSelectedDevices.length *
+        (0.01 * this.getQuality)
+      ).toFixed(1);
     },
   },
 };

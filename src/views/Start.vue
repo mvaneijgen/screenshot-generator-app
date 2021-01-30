@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section :disabled="getGenerating">
+    <section>
       <Sidebar />
       <AdvancedSidebar v-if="getState" />
       <div class="tabs">

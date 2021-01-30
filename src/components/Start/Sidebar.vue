@@ -7,10 +7,12 @@
     <!-- <div class="tabs">
       <button @click="toggleAdvanced">Advanced</button>
     </div> -->
-    <Sitemap />
-    <FileStorage />
-    <SidebarResult />
-    <Generate />
+    <fieldset :disabled="getGenerating">
+      <Sitemap />
+      <FileStorage />
+      <SidebarResult />
+      <Generate />
+    </fieldset>
   </aside>
 </template>
 
@@ -27,29 +29,11 @@ export default {
     FileStorage,
     SidebarResult,
   },
-  // data() {
-  //   return {
-  //     key: "advanced",
-  //   };
-  // },
-  // computed: {
-  //   getState: {
-  //     get() {
-  //       return this.$store.getters.getState(this.key);
-  //     },
-  //     set(val) {
-  //       return val;
-  //     },
-  //   },
-  // },
-  // methods: {
-  //   toggleAdvanced() {
-  //     this.$store.commit("SET_STATE", {
-  //       key: this.key,
-  //       value: (this.getState = !this.getState),
-  //     });
-  //   },
-  // },
+  computed: {
+    getGenerating() {
+      return this.$store.getters.getState("generating");
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -85,10 +69,15 @@ aside {
       margin-left: 10px;
     }
   }
-  // i {
-  //   transform: translateY(1px);
-  //   display: inline-block;
-  //   font-style: normal;
-  // }
+}
+fieldset {
+  border: 0;
+  padding: 0;
+  width: 100%;
+}
+[disabled="disabled"] {
+  background-color: $brand-dark-lighten;
+  color: rgba($brand-light, 0.3);
+  cursor: not-allowed;
 }
 </style>
