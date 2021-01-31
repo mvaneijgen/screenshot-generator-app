@@ -6,7 +6,6 @@ import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const electron = require('electron');
 global.share = { electron, ipcMain };
 
-
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Scheme must be registered before the app is ready

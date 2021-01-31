@@ -13,12 +13,17 @@ export default {
         key: "generating",
         value: true,
       });
+      this.$store.commit("SET_STATE", {
+        key: "advanced",
+        value: false,
+      });
       ipcRenderer.send("puppeteer", [
         JSON.stringify(this.getSitemap),
         JSON.stringify(this.getSelectedDevices),
         JSON.stringify(this.getPath),
         JSON.stringify(this.getPathChrome),
         JSON.stringify(this.getCustomCSS),
+        JSON.stringify(this.getQuality),
       ]);
     },
   },
@@ -30,6 +35,9 @@ export default {
       getPathChrome: "getPathChrome",
       getCustomCSS: "getCustomCSS",
     }),
+    getQuality() {
+      return this.$store.getters.getState("quality");
+    },
   },
 };
 </script>

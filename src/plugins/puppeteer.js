@@ -8,6 +8,7 @@ global.share.ipcMain.on('puppeteer', async (event, args) => {
   const fileStorage = JSON.parse(args[2]);
   const pathChrome = JSON.parse(args[3]);
   const customCSS = JSON.parse(args[4]);
+  const quality = JSON.parse(args[5]);
 
   // Envoke Puppeteer
   const browser = await puppeteer.launch(
@@ -89,7 +90,7 @@ global.share.ipcMain.on('puppeteer', async (event, args) => {
       await page.screenshot({
         path: deviceDirectory + imageName,
         type: 'jpeg',
-        quality: 60,
+        quality: Number(quality),
         fullPage: true,
       });
       // END Take a 📸 screenshot -------------------------------------//

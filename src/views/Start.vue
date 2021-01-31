@@ -363,6 +363,7 @@ section {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
+  z-index: 1000;
   @include media-breakpoint-down(sm) {
     flex-direction: column;
   }

@@ -405,6 +405,19 @@ export default new Vuex.Store({
     getSitemap: state => {
       return state.sitemap;
     },
+    getLimitSitemap: (state, getterrs) => {
+      const array = [...state.sitemap];
+      // function shuffleArray(array) {
+      // 🃏 Shuffle 🔗 URLs
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      // }
+      // ❌ Remove 🔗 URLs 
+      console.warn(array);
+      return array.slice(1, getterrs.getSitemapLength);
+    },
     getSitemapLength: state => {
       // return state.sitemap.length;
       return Math.round((state.sitemap.length / 100) * state.amount);

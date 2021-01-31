@@ -2,7 +2,7 @@
   <div class="content">
     <div class="input">
       <label for="quality">Image quality</label>
-      <input type="range" id="quality" name="quality" :value="getState" min="0" max="100" @input="setState">
+      <input type="range" id="quality" name="quality" :value="getState" min="1" max="100" @input="setState">
       <div class=" description">Taking <strong>{{ getSitemapLength * getSelectedDevices.length}}</strong> screenshots will take up arround <strong>~{{getTotalMB}}MB</strong> of storage.</div>
     </div>
   </div>
@@ -23,6 +23,9 @@ export default {
       getSelectedDevices: "getSelectedDevices",
       getTotalMB: "getTotalMB",
     }),
+    getState() {
+      return this.$store.getters.getState("quality");
+    },
   },
   methods: {
     setState(e) {
