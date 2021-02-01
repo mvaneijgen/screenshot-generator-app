@@ -50,8 +50,13 @@ export default {
     // getSelectedDevices() {
     //   return this.$store.getters["getSelectedDevices"];
     // },
-    getAdvanced() {
-      return this.$store.getters.getState("advanced");
+    getAdvanced: {
+      get() {
+        return this.$store.getters.getState("advanced");
+      },
+      set(val) {
+        return val;
+      },
     },
     getLoading() {
       return this.$store.getters["getLoading"];
@@ -97,5 +102,4 @@ export default {
 .description {
   margin-bottom: $base-margin * 2;
 }
-/* Item in view leave to this postion */
 </style>

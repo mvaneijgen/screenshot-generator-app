@@ -65,6 +65,7 @@ export default {
       this.$store.commit("SET_SITEMAP", [
         "https://decodedbags.com/pages/about",
       ]);
+      this.$store.commit("SET_CUSTOM_CSS", ["* {background: yellow; }"]);
     }
     //------------------------------------------------------//
     // ⌘ macOS
@@ -119,10 +120,6 @@ body {
     font-size: 22px;
   }
 }
-@include media-breakpoint-up(md) {
-  body {
-  }
-}
 .alloy-cards {
   font-size: 16px;
   @include media-breakpoint-up(lg) {
@@ -172,10 +169,6 @@ h2 {
 }
 h3 {
   font-size: 22px;
-
-  // @include media-breakpoint-up(lg) {
-  //   font-size: 30px;
-  // }
 }
 h4 {
   font-size: 20px;
@@ -298,7 +291,6 @@ button,
   padding: 0;
   display: inline;
   font-size: inherit;
-  // font-size: 16px;
   color: inherit;
   width: auto;
   font-weight: 400;
@@ -334,7 +326,6 @@ button,
   color: $brand-three;
 }
 .content {
-  // margin-top: 40px;
   width: 100%;
 }
 $offset: 400px;
@@ -353,7 +344,6 @@ aside {
   height: 100%;
 }
 main {
-  // #component-Devices {
   @include media-breakpoint-up(lg) {
     margin-left: $offset;
   }

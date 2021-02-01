@@ -318,7 +318,7 @@ export default new Vuex.Store({
     loading: false,
     path: '',
     pathChrome: '',
-    customCSS: '* {background: yellow; }',
+    customCSS: '',
     generating: false,
     amount: 100,
     quality: 60,

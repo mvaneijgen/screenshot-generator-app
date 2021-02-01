@@ -37,11 +37,9 @@ export default {
 @import "@/assets/scss/_variables.scss";
 #component-Devices {
   h2 {
-    // text-transform: lowercase;
     color: $brand-three;
     padding-left: $base-margin;
     margin: 0;
-    // font-weight: normal;
     font-size: 110px;
     margin-bottom: -0.7em;
     pointer-events: none;
