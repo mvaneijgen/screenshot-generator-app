@@ -8,7 +8,6 @@
         <transition-group name="custom" tag="ul">
           <li v-for="(item) in log" :key="item.id">{{item.url}}</li>
         </transition-group>
-        {{'status ' + done}}
       </div>
       <div class="inner" v-if="done" key="done">
         ✅

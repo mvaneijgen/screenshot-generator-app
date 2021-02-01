@@ -405,8 +405,9 @@ export default new Vuex.Store({
     getSitemap: state => {
       return state.sitemap;
     },
-    getLimitSitemap: (state, getterrs) => {
-      const array = [...state.sitemap];
+    getLimitSitemap: (state, getters) => {
+      // const array = [...state.sitemap];
+      const array = state.sitemap;
       // function shuffleArray(array) {
       // 🃏 Shuffle 🔗 URLs
       for (let i = array.length - 1; i > 0; i--) {
@@ -415,8 +416,7 @@ export default new Vuex.Store({
       }
       // }
       // ❌ Remove 🔗 URLs 
-      console.warn(array);
-      return array.slice(1, getterrs.getSitemapLength);
+      return array.slice(0, getters.getSitemapLength);
     },
     getSitemapLength: state => {
       // return state.sitemap.length;

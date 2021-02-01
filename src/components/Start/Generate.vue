@@ -18,7 +18,10 @@ export default {
         value: false,
       });
       ipcRenderer.send("puppeteer", [
-        JSON.stringify(this.getSitemap),
+        // JSON.stringify(this.getSitemap),
+        JSON.stringify(
+          this.getAmount === 100 ? this.getSitemap : this.getLimitSitemap,
+        ),
         JSON.stringify(this.getSelectedDevices),
         JSON.stringify(this.getPath),
         JSON.stringify(this.getPathChrome),
@@ -34,9 +37,13 @@ export default {
       getPath: "getPath",
       getPathChrome: "getPathChrome",
       getCustomCSS: "getCustomCSS",
+      getLimitSitemap: "getLimitSitemap",
     }),
     getQuality() {
       return this.$store.getters.getState("quality");
+    },
+    getAmount() {
+      return this.$store.getters.getState("amount");
     },
   },
 };
