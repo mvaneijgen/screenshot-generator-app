@@ -327,11 +327,11 @@ button,
       border-color: $brand-one;
     }
   }
-  .description {
-    font-size: 16px;
-    width: 100%;
-    color: $brand-three;
-  }
+}
+.description {
+  font-size: 16px;
+  width: 100%;
+  color: $brand-three;
 }
 .content {
   // margin-top: 40px;

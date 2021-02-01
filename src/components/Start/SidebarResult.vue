@@ -24,7 +24,7 @@
         <h3>🖼 {{calcScreenshots}} <span>screenshots</span> (~{{getTotalMB}}MB)</h3>
       </div>
     </transition>
-
+    <div class=" description">Looking to add a custom Chrome path, add custom CSS, decrease screenshot quality or limit the amount of screeshots. <button @click="toggleAdvanced" class="btn-none">Take a look at the advacned settings</button>. </div>
   </div>
 
 </template>
@@ -33,6 +33,14 @@
 import { mapGetters } from "vuex";
 
 export default {
+  methods: {
+    toggleAdvanced() {
+      this.$store.commit("SET_STATE", {
+        key: "advanced",
+        value: (this.getAdvanced = !this.getAdvanced),
+      });
+    },
+  },
   computed: {
     ...mapGetters({
       getSitemapLength: "getSitemapLength",
@@ -42,6 +50,9 @@ export default {
     // getSelectedDevices() {
     //   return this.$store.getters["getSelectedDevices"];
     // },
+    getAdvanced() {
+      return this.$store.getters.getState("advanced");
+    },
     getLoading() {
       return this.$store.getters["getLoading"];
     },
@@ -75,13 +86,16 @@ export default {
   background-color: $brand-three;
   padding: $base-margin;
   font-size: 16px;
-  margin-bottom: $base-margin * 3;
+  margin-bottom: $base-margin;
   p {
     margin-bottom: 0;
   }
   h3 {
     hyphens: auto;
   }
+}
+.description {
+  margin-bottom: $base-margin * 2;
 }
 /* Item in view leave to this postion */
 </style>
