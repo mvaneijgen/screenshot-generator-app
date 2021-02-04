@@ -27,6 +27,7 @@ export default {
 #advanced {
   background-color: $brand-three;
   // margin-left: 400px;
+  z-index: 900;
   .input {
     .description,
     label {

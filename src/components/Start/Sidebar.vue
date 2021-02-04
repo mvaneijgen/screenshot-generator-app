@@ -13,6 +13,9 @@
       <SidebarResult />
       <Generate />
     </fieldset>
+    <div class="tabs">
+      <button @click="toggleAdvanced" :class="{active: getState}">Advanced</button>
+    </div>
   </aside>
 </template>
 
@@ -29,9 +32,30 @@ export default {
     FileStorage,
     SidebarResult,
   },
+  data() {
+    return {
+      key: "advanced",
+    };
+  },
   computed: {
     getGenerating() {
       return this.$store.getters.getState("generating");
+    },
+    getState: {
+      get() {
+        return this.$store.getters.getState(this.key);
+      },
+      set(val) {
+        return val;
+      },
+    },
+  },
+  methods: {
+    toggleAdvanced() {
+      this.$store.commit("SET_STATE", {
+        key: this.key,
+        value: (this.getState = !this.getState),
+      });
     },
   },
 };
@@ -39,12 +63,38 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/scss/_variables.scss";
 aside {
+  position: relative;
   -webkit-app-region: drag;
-  // position: relative;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: space-between;
-  // align-items: flex-start;
+}
+.tabs {
+  position: absolute;
+  top: 50px;
+  right: -30px;
+  @include media-breakpoint-up(lg) {
+    top: 50px;
+    right: 35px;
+    // right: 15px;
+    transform-origin: top right;
+  }
+  transform: rotate(-90deg);
+  z-index: 1100;
+  display: flex;
+  flex-direction: row-reverse;
+
+  button {
+    background-color: $brand-one;
+    color: $brand-light;
+    width: auto;
+    padding: 10px;
+    font-size: 16px;
+    height: 35px;
+    &.active,
+    &:hover {
+      transform: scale(1);
+      background-color: $brand-dark-lighten;
+      color: $brand-three;
+    }
+  }
 }
 #logo {
   margin-bottom: 40px;

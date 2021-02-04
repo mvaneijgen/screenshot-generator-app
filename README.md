@@ -39,6 +39,7 @@ npm run electron:serve
 
 # build electron application for production
 yarn electron:build
+yarn electron:build -p always
 #or
 npm run electron:build
 ```

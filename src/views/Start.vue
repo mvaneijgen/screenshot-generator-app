@@ -1,11 +1,13 @@
 <template>
   <div>
     <section>
-      <Sidebar />
-      <AdvancedSidebar v-if="getState" />
-      <div class="tabs">
-        <button @click="toggleAdvanced" :class="{active: getState}">Advanced</button>
-      </div>
+
+      <transition name="slide" appear>
+        <Sidebar />
+      </transition>
+      <transition name="slide" appear>
+        <AdvancedSidebar v-if="getState" />
+      </transition>
     </section>
     <main>
       <Progress v-if="getGenerating" />
@@ -46,14 +48,6 @@ export default {
       set(val) {
         return val;
       },
-    },
-  },
-  methods: {
-    toggleAdvanced() {
-      this.$store.commit("SET_STATE", {
-        key: this.key,
-        value: (this.getState = !this.getState),
-      });
     },
   },
   mounted() {
@@ -250,6 +244,7 @@ button,
   transition-timing-function: ease;
   width: 100%;
   border: 0;
+  cursor: pointer;
   &:hover {
     transform: scale(1.05);
   }
@@ -341,6 +336,7 @@ aside {
     width: $offset;
   }
   overflow-y: auto;
+  overflow-x: hidden;
   height: 100%;
 }
 main {
@@ -365,35 +361,6 @@ section {
   }
 }
 
-.tabs {
-  position: absolute;
-  top: 50px;
-  right: -30px;
-  @include media-breakpoint-up(lg) {
-    top: 50px;
-    right: 1px;
-    transform-origin: top right;
-  }
-  transform: rotate(-90deg);
-  z-index: 1100;
-  display: flex;
-  flex-direction: row-reverse;
-
-  button {
-    background-color: $brand-one;
-    color: $brand-light;
-    width: auto;
-    padding: 10px;
-    font-size: 16px;
-    height: 35px;
-    &.active,
-    &:hover {
-      transform: scale(1);
-      background-color: $brand-dark-lighten;
-      color: $brand-three;
-    }
-  }
-}
 .custom-leave,
 .custom-leave-to {
   // opacity: 0;
@@ -414,6 +381,30 @@ section {
 .custom-leave-active {
   transition: transform, opacity;
   transition-duration: 600ms;
+  transition-timing-function: ease;
+  // transition-delay: 300ms;
+}
+
+.slide-leave,
+.slide-leave-to {
+  // opacity: 0;
+  transform: translateX(-100%);
+}
+/* Item NOT in view starts in this postion */
+.slide-enter {
+  // opacity: 0;
+  transform: translateX(-100%);
+}
+/* Item NOT goes to this postion */
+.slide-enter-to {
+  // opacity: 1;
+  transform: translateX(0);
+}
+/* Properties active during the whole duration */
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform, opacity;
+  transition-duration: 300ms;
   transition-timing-function: ease;
   // transition-delay: 300ms;
 }
