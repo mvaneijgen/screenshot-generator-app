@@ -1,16 +1,27 @@
+> An app that will generate screenshots of all pages of a website, you can specify multiple screensizes.
+
 [![Screenshot Generator Logo](https://imgur.com/bi7t3XU.png)](https://github.com/mvaneijgen/screenshot-generator-app)
 
-> An app that will generate screenshots of all pages of a website on multiple devices
+
+# Getting Started
+
+## Installation
+1. Download the version of your OS at the [Github Releases tab](https://github.com/mvaneijgen/screenshot-generator-app/releases) (macOS .dmg, Windows .exe)
+1. Follow the instalation instructions after downloading.
+1. For macOS the first time you open the app right click it and open, allow the prompt.
+1. Add the url to your sitemap.xml, most of the time this is domain.com/sitemap.xml
+1. Select at least one device
+1. Generate!
+
+At the advanced tab you can limit the amount of screenshots, its smart to do a test run with a few URLs at first, so you can look for issues. 
+
+If there are 100vh elemtnts, be sure to add custom CSS to give them a max height, otherwise they will be the full height of the screenshot.
 
 [![Screenshot Generator App Preview](https://i.imgur.com/pTSFKqk.png)](https://github.com/mvaneijgen/screenshot-generator-app)
 
-## Getting Started
-
-The app has a build in list of devcies of which you can select the once you want screenshots of. After that you can add a sitemap.xml of the site you want to generate a screenshot of. This can be h
-
-## Table of Contents (Optional)
-
+## Table of Contents
 - [Installation](#installation)
+- [Development Installation](#development)
 - [Built With](#built-with)
 - [Todo list](#todo-list)
 - [FAQ](#faq)
@@ -19,9 +30,9 @@ The app has a build in list of devcies of which you can select the once you want
 - [Support](#support)
 - [License](#license)
 
-## Installation
+## Development
 
-Download the latest version from the [Github Releases tab](https://github.com/mvaneijgen/screenshot-generator-app/releases)
+Download the prroject from [Github](https://github.com/mvaneijgen/screenshot-generator-app)
 
 ### Want to edit the project?
 #### Build Setup
@@ -40,6 +51,7 @@ npm run electron:serve
 # build electron application for production
 yarn electron:build
 yarn electron:build -p always
+yarn electron:build --mac --win -p always 
 #or
 npm run electron:build
 ```
