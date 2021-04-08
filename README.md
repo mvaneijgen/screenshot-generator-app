@@ -1,4 +1,5 @@
 > An app that will generate screenshots of all pages of a website, you can specify multiple screensizes.
+### Quick start `yarn install` `yarn electron:serve`
 
 [![Screenshot Generator Logo](https://imgur.com/bi7t3XU.png)](https://github.com/mvaneijgen/screenshot-generator-app)
 
@@ -81,7 +82,8 @@ npm run build
 - [x] User interface
 - [x] App icon
 - [x] Node.js Puppeteer child process 
-- [ ] Create a loading animation while node script is running
+- [x] Create a loading animation while node script is running
+- [ ] Local storage settings
 
 ## Built With
 

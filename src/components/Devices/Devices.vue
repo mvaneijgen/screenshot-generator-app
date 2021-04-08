@@ -3,11 +3,11 @@
     <h2>Phones</h2>
     <DeviceTypes :type="getTypeDevices('phones')" />
 
-    <h2>Tablets</h2>
-    <DeviceTypes :type="getTypeDevices('tablets')" />
-
     <h2>Computers</h2>
     <DeviceTypes :type="getTypeDevices('computers')" />
+
+    <h2>Tablets</h2>
+    <DeviceTypes :type="getTypeDevices('tablets')" />
 
     <!-- <h2>Laptops</h2>
     <DeviceTypes :type="getTypeDevices('laptops')" /> -->

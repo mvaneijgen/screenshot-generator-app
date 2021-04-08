@@ -19,28 +19,6 @@ export default new Vuex.Store({
     //------------------------------------------------------//
     phones: [
       {
-        deviceName: "iPhone 4",
-        width: 320,
-        height: 480,
-        deviceScaleFactor: 2,
-        userAgent:
-          "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
-        touch: true,
-        mobile: true,
-        type: "phone"
-      },
-      {
-        deviceName: "iPhone 5/SE",
-        width: 320,
-        height: 568,
-        deviceScaleFactor: 2,
-        userAgent:
-          "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
-        touch: true,
-        mobile: true,
-        type: "phone"
-      },
-      {
         deviceName: "iPhone 6/7/8/SE",
         width: 375,
         height: 667,
@@ -62,24 +40,35 @@ export default new Vuex.Store({
         mobile: true,
         type: "phone"
       },
-      // {
-      //   deviceName: "iPhone SE 2020",
-      //   width: 375,
-      //   height: 667,
-      //   deviceScaleFactor: 2,
-      //   userAgent:
-      //     "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239e Safari/602.1",
-      //   touch: true,
-      //   mobile: true,
-      //   type: "phone"
-      // },
       {
-        deviceName: "iPhone X/11",
+        deviceName: "iPhone X/11/12",
         width: 375,
         height: 812,
         deviceScaleFactor: 3,
         userAgent:
           "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239e Safari/602.1",
+        touch: true,
+        mobile: true,
+        type: "phone"
+      },
+      {
+        deviceName: "iPhone 5/SE",
+        width: 320,
+        height: 568,
+        deviceScaleFactor: 2,
+        userAgent:
+          "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
+        touch: true,
+        mobile: true,
+        type: "phone"
+      },
+      {
+        deviceName: "iPhone 4",
+        width: 320,
+        height: 480,
+        deviceScaleFactor: 2,
+        userAgent:
+          "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
         touch: true,
         mobile: true,
         type: "phone"
@@ -105,77 +94,6 @@ export default new Vuex.Store({
         touch: true,
         mobile: true,
         type: "phone"
-      },
-    ],
-    //------------------------------------------------------//
-    // Tablets
-    //------------------------------------------------------//
-    tablets: [
-      {
-        deviceName: "iPad Mini",
-        width: 1536,
-        height: 2048,
-        deviceScaleFactor: 2,
-        userAgent:
-          "Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
-        touch: true,
-        mobile: true,
-        type: "tablet"
-      },
-      {
-        deviceName: "iPad",
-        width: 1620,
-        height: 2160,
-        deviceScaleFactor: 2,
-        userAgent:
-          "Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
-        touch: true,
-        mobile: true,
-        type: "tablet",
-      },
-      {
-        deviceName: "iPad Pro 11",
-        width: 1668,
-        height: 2388,
-        deviceScaleFactor: 2,
-        userAgent:
-          "Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
-        touch: true,
-        mobile: true,
-        type: "tablet"
-      },
-      {
-        deviceName: "iPad Pro 12.9",
-        width: 2048,
-        height: 2732,
-        deviceScaleFactor: 2,
-        userAgent:
-          "Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
-        touch: true,
-        mobile: true,
-        type: "tablet"
-      },
-      {
-        deviceName: "Blackberry PlayBook",
-        width: 600,
-        height: 1024,
-        deviceScaleFactor: 1,
-        userAgent:
-          "Mozilla/5.0 (PlayBook; U; RIM Tablet OS 2.1.0; en-US) AppleWebKit/536.2+ (KHTML like Gecko) Version/7.2.1.0 Safari/536.2+",
-        touch: true,
-        mobile: true,
-        type: "tablet"
-      },
-      {
-        deviceName: "Kindle Fire HDX",
-        width: 800,
-        height: 1280,
-        deviceScaleFactor: 2,
-        userAgent:
-          "Mozilla/5.0 (Linux; U; en-us; KFAPWI Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) Silk/3.13 Safari/535.19 Silk-Accelerated=true",
-        touch: true,
-        mobile: true,
-        type: "tablet"
       },
     ],
     //------------------------------------------------------//
@@ -253,26 +171,6 @@ export default new Vuex.Store({
     //------------------------------------------------------//
     computers: [
       {
-        deviceName: "Wide screen",
-        width: 1280,
-        height: 950,
-        deviceScaleFactor: 1,
-        userAgent: "",
-        touch: false,
-        mobile: true,
-        type: "desktop"
-      },
-      {
-        deviceName: "27 iMac",
-        width: 1440,
-        height: 900,
-        deviceScaleFactor: 1,
-        userAgent: "",
-        touch: false,
-        mobile: true,
-        type: "desktop",
-      },
-      {
         deviceName: "Moderate desktop",
         width: 1920,
         height: 1080,
@@ -283,42 +181,133 @@ export default new Vuex.Store({
         type: "desktop"
       },
       {
-        deviceName: "Laptop with touch",
-        width: 1280,
-        height: 950,
+        deviceName: "Wide screen",
+        width: 1680,
+        height: 1000,
         deviceScaleFactor: 1,
         userAgent: "",
         touch: false,
         mobile: true,
-        type: "laptop"
+        type: "desktop"
       },
       {
-        deviceName: "Laptop with HiDPI screen",
+        deviceName: "Large laptop",
         width: 1440,
         height: 900,
-        deviceScaleFactor: 2,
+        deviceScaleFactor: 1,
         userAgent: "",
         touch: false,
         mobile: true,
-        type: "laptop"
+        type: "laptop",
       },
       {
-        deviceName: "Laptop with MDPI screen",
+        deviceName: "Small laptop",
         width: 1280,
-        height: 800,
+        height: 720,
         deviceScaleFactor: 1,
         userAgent: "",
         touch: false,
         mobile: true,
         type: "laptop"
-      }
+      },
+      // {
+      //   deviceName: "Laptop with HiDPI screen",
+      //   width: 1440,
+      //   height: 900,
+      //   deviceScaleFactor: 2,
+      //   userAgent: "",
+      //   touch: false,
+      //   mobile: true,
+      //   type: "laptop"
+      // },
+      // {
+      //   deviceName: "Laptop with MDPI screen",
+      //   width: 1280,
+      //   height: 800,
+      //   deviceScaleFactor: 1,
+      //   userAgent: "",
+      //   touch: false,
+      //   mobile: true,
+      //   type: "laptop"
+      // }
+    ],
+    //------------------------------------------------------//
+    // Tablets
+    //------------------------------------------------------//
+    tablets: [
+      {
+        deviceName: "iPad",
+        width: 768,
+        height: 1024,
+        deviceScaleFactor: 2,
+        userAgent:
+          "Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
+        touch: true,
+        mobile: true,
+        type: "tablet",
+      },
+      {
+        deviceName: "iPad Mini",
+        width: 601,
+        height: 962,
+        deviceScaleFactor: 2,
+        userAgent:
+          "Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
+        touch: true,
+        mobile: true,
+        type: "tablet"
+      },
+      {
+        deviceName: "iPad Pro 11",
+        width: 834,
+        height: 1194,
+        deviceScaleFactor: 2,
+        userAgent:
+          "Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
+        touch: true,
+        mobile: true,
+        type: "tablet"
+      },
+      {
+        deviceName: "Kindle Fire HDX",
+        width: 800,
+        height: 1280,
+        deviceScaleFactor: 2,
+        userAgent:
+          "Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1",
+        touch: true,
+        mobile: true,
+        type: "tablet"
+      },
+      // {
+      //   deviceName: "Blackberry PlayBook",
+      //   width: 600,
+      //   height: 1024,
+      //   deviceScaleFactor: 1,
+      //   userAgent:
+      //     "Mozilla/5.0 (PlayBook; U; RIM Tablet OS 2.1.0; en-US) AppleWebKit/536.2+ (KHTML like Gecko) Version/7.2.1.0 Safari/536.2+",
+      //   touch: true,
+      //   mobile: true,
+      //   type: "tablet"
+      // },
+      // {
+      //   deviceName: "Kindle Fire HDX",
+      //   width: 800,
+      //   height: 1280,
+      //   deviceScaleFactor: 2,
+      //   userAgent:
+      //     "Mozilla/5.0 (Linux; U; en-us; KFAPWI Build/JDQ39) AppleWebKit/535.19 (KHTML, like Gecko) Silk/3.13 Safari/535.19 Silk-Accelerated=true",
+      //   touch: true,
+      //   mobile: true,
+      //   type: "tablet"
+      // },
     ],
     url: "",
     sitemap: [],
     loading: false,
     path: '',
     pathChrome: '',
-    customCSS: '',
+    customCSS: 'main { min-height: 1000px !important; }',
     generating: false,
     amount: 100,
     quality: 60,
