@@ -16,7 +16,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "electron-updater": "^4.3.5",
-    "node-sass": "^5.0.0",
+    "node-sass": "^7.0.0",
     "puppeteer-core": "^5.5.0",
     "sass-loader": "^10.1.1",
     "sitemapper": "^3.2.2",
