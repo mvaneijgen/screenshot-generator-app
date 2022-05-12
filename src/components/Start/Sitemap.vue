@@ -10,7 +10,6 @@
 
 <script>
 import { mapGetters } from "vuex";
-const Sitemapper = require("sitemapper");
 
 export default {
   data() {
@@ -25,24 +24,58 @@ export default {
   methods: {
     getSitemap(e) {
       const url = e.target.value;
-
-      const sitemap = new Sitemapper({
-        url: url,
-        timeout: 15000, // 15 seconds
-      });
+      const array = [];
+      var sitemapFile = url;
       this.$store.dispatch("SET_LOADING", true);
 
-      sitemap
-        .fetch()
-        .then((data) => {
-          this.$store.dispatch("SET_URL", data.url);
-          this.$store.dispatch("SET_SITEMAP", data.sites);
-          this.$store.dispatch("SET_LOADING", false);
-        })
-        .catch((error) => {
-          this.error = error;
-          console.log(error);
+      getXMLSitemapObject(sitemapFile, function (sitemapObject) {
+        // retrieve properties from the sitemap object
+
+        // Get sitemap from the sitemap
+        const sitemap = sitemapObject.getElementsByTagName("sitemap");
+        sitemap.forEach((item) => {
+          const i = item.getElementsByTagName("loc")[0].textContent;
+          getXMLSitemapObject(i, function (sitemapObject) {
+            const urls = sitemapObject.getElementsByTagName("url");
+            urls.forEach((item) => {
+              const url = item.getElementsByTagName("loc")[0].textContent;
+              array.push(url);
+              console.warn(url);
+            });
+          });
         });
+        // Get URLs from the sitemap
+        const urls = sitemapObject.getElementsByTagName("url");
+        urls.forEach((item) => {
+          const url = item.getElementsByTagName("loc")[0].textContent;
+          array.push(url);
+          console.warn(url);
+        });
+      });
+
+      // get sitemap content and parse it to Document Object Model
+      function getXMLSitemapObject(sitemapFile, callback) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState === 4 && this.status === 200) {
+            var sitemapContent = this.responseText;
+            var sitemapObject = parseXMLSitemap(sitemapContent);
+            callback(sitemapObject);
+          }
+        };
+        xhttp.open("GET", sitemapFile, true);
+        xhttp.send();
+      }
+
+      // parse a text string into an XML DOM object
+      function parseXMLSitemap(sitemapContent) {
+        var parser = new DOMParser();
+        var xmlDoc = parser.parseFromString(sitemapContent, "text/xml");
+        return xmlDoc;
+      }
+      this.$store.dispatch("SET_URL", url);
+      this.$store.dispatch("SET_SITEMAP", array);
+      this.$store.dispatch("SET_LOADING", false);
     },
   },
 };
